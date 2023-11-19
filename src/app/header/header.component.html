@@ -2,7 +2,14 @@
 
 <mat-toolbar class="headToolBar">
   <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-    <!-- Brand logo -->
+    <button
+      mat-icon-button
+      (click)="sidenav.toggle()"
+      id="menuIcon"
+      aria-label="Example icon-button with menu icon"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
     <div>
       <div style="margin: 10px">
         <button mat-button class="brand-button">
@@ -19,22 +26,56 @@
         </svg>
       </div>
     </div>
-    <!-- Navigation links -->
     <div fxLayout="row" fxLayoutGap="16px">
       <span>
-        <button mat-button class="nav-button">About Us</button>
+        <button mat-button class="top-menu-item">About Us</button>
       </span>
       <span>
-        <button mat-button class="nav-button">Services</button>
+        <button mat-button class="top-menu-item">Services</button>
       </span>
       <span>
-        <button mat-button class="nav-button">Sign In / Login</button>
+        <button mat-button class="top-menu-item">Sign Up / Login</button>
       </span>
 
-      <span id="seller">
-        <button mat-button class="nav-button">Become a Seller</button>
+      <span id="seller" class="top-menu-item">
+        <button mat-button class="top-menu-item">Become a Seller</button>
       </span>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav
+    #sidenav
+    [fixedInViewport]="true"
+    [fixedTopGap]="60"
+    mode="side"
+    class="headToolBar"
+  >
+    <div class="side-nav-items">
+      <div>
+        <a (click)="sidenav.close()" mat-button class="side-menu-item"
+          ><mat-icon>home</mat-icon>About Us</a
+        >
+      </div>
+
+      <div>
+        <a (click)="sidenav.close()" mat-button class="side-menu-item"
+          ><mat-icon>settings_applications</mat-icon>Services</a
+        >
+      </div>
+
+      <div>
+        <a (click)="sidenav.close()" mat-button class="side-menu-item"
+          ><mat-icon>person_add</mat-icon>Sign UP / Login</a
+        >
+      </div>
+      <div>
+        <a (click)="sidenav.close()" mat-button class="side-menu-item"
+          ><mat-icon>people</mat-icon>Become A Seller</a
+        >
+      </div>
+    </div>
+  </mat-sidenav>
+</mat-sidenav-container>
 <mat-divider></mat-divider>
