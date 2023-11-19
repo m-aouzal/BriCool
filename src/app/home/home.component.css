@@ -1,0 +1,17 @@
+@media (max-width: 600px) {
+  .svg-image {
+    display: none;
+  }
+}
+
+
+
+.text-container {
+  padding: 30px;
+}
+.title {
+  font-size: 40px;
+  font-weight: 600;
+  color: #263238;
+  font-family: Poppins;
+}
