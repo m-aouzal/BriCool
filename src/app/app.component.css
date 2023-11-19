@@ -3,6 +3,9 @@
   font-size: 30px !important;
   padding: 2px;
 }
+.container {
+  overflow-x: hidden;
+}
 
 .brand-button {
   font-size: 28px;

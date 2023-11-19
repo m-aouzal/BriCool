@@ -1,8 +1,33 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 col-lg-8 col-12">
-      <div class = "title">
+      <div class="title">
         <h1>Find the right freelance service, right away</h1>
+      </div>
+      <div>
+        <form class="Input-form">
+          <mat-form-field class="input-full-width">
+            <mat-label>What’s on your To-Do list ?</mat-label>
+            <input
+              #input
+              type="text"
+              placeholder="Pick one"
+              matInput
+              [formControl]="myControl"
+              [matAutocomplete]="auto"
+              (input)="filter()"
+              (focus)="filter()"
+            />
+            <mat-autocomplete requireSelection #auto="matAutocomplete">
+              <mat-option
+                *ngFor="let option of filteredOptions"
+                [value]="option"
+              >
+                {{ option }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
       </div>
     </div>
     <div class="col-md-6 col-lg-4" style="background-color: blue">
