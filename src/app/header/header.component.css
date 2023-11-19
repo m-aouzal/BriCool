@@ -1,0 +1,22 @@
+.headToolBar {
+  background-color: white;
+  padding: 10px;
+  font-size: 30px !important;
+}
+
+.brand-button {
+  font-size: 28px;
+}
+
+.nav-button {
+  font-size: 22px;
+  padding: 10px;
+}
+
+#seller{
+    padding: 0;
+    border: 2px solid #0652DD;
+    border-radius: 10px;
+    
+    color: #0652DD;
+}

@@ -1,0 +1,40 @@
+<!-- src/app/navigation/navigation.component.html -->
+
+<mat-toolbar class="headToolBar">
+  <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+    <!-- Brand logo -->
+    <div>
+      <div style="margin: 10px">
+        <button mat-button class="brand-button">
+          BriC<span style="color: #0652dd">oo</span>l
+        </button>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="8"
+          height="8"
+          viewBox="0 0 16 16"
+          fill="none"
+        >
+          <circle cx="8" cy="8" r="8" fill="#0652DD" />
+        </svg>
+      </div>
+    </div>
+    <!-- Navigation links -->
+    <div fxLayout="row" fxLayoutGap="16px">
+      <span>
+        <button mat-button class="nav-button">About Us</button>
+      </span>
+      <span>
+        <button mat-button class="nav-button">Services</button>
+      </span>
+      <span>
+        <button mat-button class="nav-button">Sign In / Login</button>
+      </span>
+
+      <span id="seller">
+        <button mat-button class="nav-button">Become a Seller</button>
+      </span>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-divider></mat-divider>
