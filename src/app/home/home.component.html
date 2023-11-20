@@ -632,12 +632,15 @@
       </div>
     </div>
   </div>
-  <div class="text-center mt-sm-4 mt-lg-5 font-weight-bold" style="font-size: 2.5rem; font-weight : 600; line-height: normal;">
+  <div
+    class="text-center mt-sm-4 mt-lg-5 font-weight-bold"
+    style="font-size: 2.5rem; font-weight: 600; line-height: normal"
+  >
     Here’s what you can do on Bricool
   </div>
 
-  <div class="cards row d-flex justify-content-around mt-1 m-lg-3 ">
-    <div class="col-8 mt-1 mt-sm-3 col-sm-6   col-md-4 col-lg-3 mx-lg-1">
+  <div class="cards row d-flex justify-content-around mt-1 m-lg-3">
+    <div class="col-8 mt-1 mt-sm-3 col-sm-6 col-md-4 col-lg-3 mx-lg-1">
       <mat-card>
         <mat-card-content class="row d-flex">
           <div class="col-3">
@@ -685,7 +688,7 @@
         </mat-card-content>
       </mat-card>
     </div>
-    <div class="col-8 mt-3 col-sm-6  col-md-4 col-lg-3 mx-lg-1">
+    <div class="col-8 mt-3 col-sm-6 col-md-4 col-lg-3 mx-lg-1">
       <mat-card>
         <mat-card-content class="row d-flex">
           <div class="col-3">
@@ -733,7 +736,7 @@
         </mat-card-content>
       </mat-card>
     </div>
-    <div class="col-8 mt-3 col-sm-6 col-md-4  col-lg-3 mx-lg-1">
+    <div class="col-8 mt-3 col-sm-6 col-md-4 col-lg-3 mx-lg-1">
       <mat-card>
         <mat-card-content class="row d-flex">
           <div class="col-3">
@@ -781,5 +784,66 @@
         </mat-card-content>
       </mat-card>
     </div>
+  </div>
+
+  <h1 class="mx-3 my-5" style="font-weight: 600; font-size: 1.7rem">
+    Popular Projects In Your Area
+  </h1>
+
+  <div class="Projects row d-flex justify-content-around my-3 mx-lg-3">
+    <div class="col-5 col-md-4" *ngFor="let project of projects">
+      <div class="card" style="border-radius: 10px; margin-bottom: 20px">
+        <img [src]="project.src" class="card-img-top" alt="..." />
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ project.title }}</h5>
+          <p class="card-text">
+            <i class="bi bi-tag"></i> {{ project.min }} dhs -
+            {{ project.max }} dhs
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="Everyday-life row"
+  style="background-color: #e8f0ff; overflow: hidden"
+>
+  <div class="col-10 col-lg-6 justify-content-center">
+    <div class="card-body text-start">
+      <p
+        class="card-title mt-4 mx-5 "
+        style="font-weight: 650; font-size: 1.9rem;
+        margin-left: 5rem !important;
+        "
+      >
+        Everyday life made easier
+      </p>
+
+      <div class="mx-5">
+        <p
+          class="card-text"
+          style="
+            color: #404145;
+            font-size: 1.3rem;
+            line-height: 1.5rem;
+            font-weight: 500;
+          "
+        >
+          When life gets busy, you don’t have to tackle it alone. Get time back
+          for what you love without breaking the bank.
+        </p>
+        <p><i class="bi bi-check-circle"></i> Stick to your budget</p>
+        <p><i class="bi bi-check-circle"></i> Pay when you're happy</p>
+        <p><i class="bi bi-check-circle"></i> Count on 24/7 support</p>
+      </div>
+    </div>
+  </div>
+  <div class="img-container col-lg-6" style="overflow-x: hidden;">
+    <img
+      src="../../assets/images/EveryDayLife.jpg"
+      style="width: 100%; max-height: 450px "
+      alt=""
+    />
   </div>
 </div>

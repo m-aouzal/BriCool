@@ -84,3 +84,17 @@ mat-card-content button {
 You-can-do {
   font-size: 49px !important;
 }
+
+.Projects .card-title{
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.Everyday-life p{
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 3rem;
+}

@@ -1,11 +1,13 @@
+body {
+  overflow-x: hidden !important;
+}
+
 .headToolBar {
   background-color: white;
   font-size: 30px !important;
   padding: 2px;
-  
 }
 .container {
-  overflow-x: hidden;
   background-color: white !important;
 }
 
