@@ -5,6 +5,7 @@
 }
 .container {
   overflow-x: hidden;
+  background-color: white !important;
 }
 
 .brand-button {
