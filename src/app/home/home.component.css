@@ -98,3 +98,7 @@ You-can-do {
   margin-bottom: 2rem;
   margin-left: 3rem;
 }
+
+.Projects mat-divider{
+  border-top-width: 2px !important;
+}

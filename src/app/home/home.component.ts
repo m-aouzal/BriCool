@@ -67,13 +67,34 @@ export class HomeComponent {
     'Athlete',
   ];
   projects: Project[] = [
-    { title: 'Project 1', src: 'path/to/image1.jpg', min: 100, max: 200 },
-    { title: 'Project 2', src: 'path/to/image2.jpg', min: 150, max: 250 },
-    { title: 'Project 3', src: 'path/to/image3.jpg', min: 120, max: 180 },
-    { title: 'Project 4', src: 'path/to/image4.jpg', min: 200, max: 300 },
-    { title: 'Project 5', src: 'path/to/image5.jpg', min: 80, max: 150 },
-    { title: 'Project 6', src: 'path/to/image6.jpg', min: 170, max: 220 },
+    {
+      title: 'Plumbing Upgrade',
+      src: 'aouzal.jpeg',
+      min: 100,
+      max: 200,
+    },
+    {
+      title: 'Electrical Renovation',
+      src: 'path/to/image2.jpg',
+      min: 150,
+      max: 250,
+    },
+    { title: 'Deep Cleaning', src: 'path/to/image3.jpg', min: 120, max: 180 },
+    {
+      title: 'New Construction',
+      src: 'path/to/image4.jpg',
+      min: 200,
+      max: 300,
+    },
+    {
+      title: 'Apartment Cleaning',
+      src: 'path/to/image5.jpg',
+      min: 80,
+      max: 150,
+    },
+    { title: 'Office Upgrade', src: 'path/to/image6.jpg', min: 170, max: 220 },
   ];
+
   taskers: Tasker[] = [
     {
       name: 'Ali Mohamed',
@@ -83,28 +104,28 @@ export class HomeComponent {
       rating: 95,
       img: 'ali-mohamed.jpg', // Placeholder image filename
       skills: [
-        { description: 'Plumbing', pricePerHour: 30 },
-        { description: 'Electrical Repair', pricePerHour: 35 },
-        { description: 'Carpentry', pricePerHour: 25 },
+        { description: 'Plumbing', pricePerHour: 70 },
+        { description: 'Electrical Repair', pricePerHour: 100 },
+        { description: 'Carpentry', pricePerHour: 120 },
       ],
       completedTaskNumber: 120,
     },
-   
+
     {
       name: 'Mohamed Jamal',
       slogan: 'Your Friendly IT Guy',
       description:
         'Solving tech issues with a smile. From troubleshooting to setting up networks!',
       rating: 78,
-      img: 'mohamed-gamal.jpg', // Placeholder image filename
+      img: 'aouzal.jpeg', // Placeholder image filename
       skills: [
-        { description: 'Computer Repair', pricePerHour: 40 },
-        { description: 'Network Setup', pricePerHour: 35 },
-        { description: 'Software Installation', pricePerHour: 25 },
+        { description: 'Computer Repair', pricePerHour: 350 },
+        { description: 'Network Setup', pricePerHour: 300 },
+        { description: 'Software Installation', pricePerHour: 250 },
       ],
       completedTaskNumber: 60,
     },
-    
+
     {
       name: 'Ahmed Khalid',
       slogan: 'Skilled Carpenter',
@@ -113,9 +134,9 @@ export class HomeComponent {
       rating: 85,
       img: 'ahmed-khalid.jpg', // Placeholder image filename
       skills: [
-        { description: 'Custom Furniture', pricePerHour: 30 },
-        { description: 'Wood Carving', pricePerHour: 40 },
-        { description: 'Cabinet Making', pricePerHour: 35 },
+        { description: 'Custom Furniture', pricePerHour: 60 },
+        { description: 'Wood Carving', pricePerHour: 80 },
+        { description: 'Cabinet Making', pricePerHour: 60 },
       ],
       completedTaskNumber: 90,
     },
@@ -127,9 +148,9 @@ export class HomeComponent {
       rating: 91,
       img: 'sara-hassan.jpg', // Placeholder image filename
       skills: [
-        { description: 'Electrical Wiring', pricePerHour: 35 },
-        { description: 'Lighting Installation', pricePerHour: 30 },
-        { description: 'Appliance Repair', pricePerHour: 40 },
+        { description: 'Electrical Wiring', pricePerHour: 80 },
+        { description: 'Lighting Installation', pricePerHour: 90 },
+        { description: 'Appliance Repair', pricePerHour: 120 },
       ],
       completedTaskNumber: 110,
     },
