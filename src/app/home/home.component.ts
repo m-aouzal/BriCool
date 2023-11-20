@@ -11,11 +11,13 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { Project } from './project';
 import { Tasker } from './tasker';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
+    MatDividerModule,
     MatButtonModule,
     MatIconModule,
     CommonModule,
@@ -72,14 +74,14 @@ export class HomeComponent {
     { title: 'Project 5', src: 'path/to/image5.jpg', min: 80, max: 150 },
     { title: 'Project 6', src: 'path/to/image6.jpg', min: 170, max: 220 },
   ];
-  dummyTaskers: Tasker[] = [
+  taskers: Tasker[] = [
     {
-      name: 'John Doe',
+      name: 'Ali Mohamed',
       slogan: 'Your Trusted Handyman',
       description:
         'Experienced in various home repair tasks. Customer satisfaction is my top priority!',
       rating: 95,
-      img: 'john-doe.jpg', // Placeholder image filename
+      img: 'ali-mohamed.jpg', // Placeholder image filename
       skills: [
         { description: 'Plumbing', pricePerHour: 30 },
         { description: 'Electrical Repair', pricePerHour: 35 },
@@ -87,44 +89,49 @@ export class HomeComponent {
       ],
       completedTaskNumber: 120,
     },
+   
     {
-      name: 'Jane Smith',
-      slogan: 'Expert Painter',
-      description:
-        'Transforming spaces with a brush and creativity. Bringing colors to life!',
-      rating: 88,
-      img: 'jane-smith.jpg', // Placeholder image filename
-      skills: [
-        { description: 'Interior Painting', pricePerHour: 40 },
-        { description: 'Exterior Painting', pricePerHour: 45 },
-      ],
-      completedTaskNumber: 80,
-    },
-    {
-      name: 'Mike Johnson',
+      name: 'Mohamed Jamal',
       slogan: 'Your Friendly IT Guy',
       description:
         'Solving tech issues with a smile. From troubleshooting to setting up networks!',
       rating: 78,
-      img: 'mike-johnson.jpg', // Placeholder image filename
+      img: 'mohamed-gamal.jpg', // Placeholder image filename
       skills: [
         { description: 'Computer Repair', pricePerHour: 40 },
         { description: 'Network Setup', pricePerHour: 35 },
+        { description: 'Software Installation', pricePerHour: 25 },
       ],
       completedTaskNumber: 60,
     },
+    
     {
-      name: 'Emily Davis',
-      slogan: 'Master Gardener',
+      name: 'Ahmed Khalid',
+      slogan: 'Skilled Carpenter',
       description:
-        'Passionate about plants and landscapes. Turning gardens into works of art!',
-      rating: 92,
-      img: 'emily-davis.jpg', // Placeholder image filename
+        'Crafting wood into beautiful creations. From furniture to intricate woodwork!',
+      rating: 85,
+      img: 'ahmed-khalid.jpg', // Placeholder image filename
       skills: [
-        { description: 'Landscaping', pricePerHour: 30 },
-        { description: 'Plant Care', pricePerHour: 25 },
+        { description: 'Custom Furniture', pricePerHour: 30 },
+        { description: 'Wood Carving', pricePerHour: 40 },
+        { description: 'Cabinet Making', pricePerHour: 35 },
       ],
-      completedTaskNumber: 100,
+      completedTaskNumber: 90,
+    },
+    {
+      name: 'Youssef Hassan',
+      slogan: 'Professional Electrician',
+      description:
+        'Ensuring your electrical systems are safe and efficient. Handling installations and repairs!',
+      rating: 91,
+      img: 'sara-hassan.jpg', // Placeholder image filename
+      skills: [
+        { description: 'Electrical Wiring', pricePerHour: 35 },
+        { description: 'Lighting Installation', pricePerHour: 30 },
+        { description: 'Appliance Repair', pricePerHour: 40 },
+      ],
+      completedTaskNumber: 110,
     },
   ];
 
