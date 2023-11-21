@@ -13,16 +13,16 @@
           >
             <mat-label>What’s on your To-Do list ?</mat-label>
             <input
-              #input
+              #OptionsInput
               type="text"
               placeholder="Pick one"
               matInput
-              [formControl]="myControl"
-              [matAutocomplete]="auto"
-              (input)="filter()"
-              (focus)="filter()"
+              [formControl]="myOptionsControl"
+              [matAutocomplete]="autoOptions"
+              (input)="filterOptions()"
+              (focus)="filterOptions()"
             />
-            <mat-autocomplete requireSelection #auto="matAutocomplete">
+            <mat-autocomplete requireSelection #autoOptions="matAutocomplete">
               <mat-option
                 *ngFor="let option of filteredOptions"
                 [value]="option"
@@ -43,7 +43,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-4 mt-4 img-container" style="background-color: blue">
+    <div class="col-lg-4 mt-4 img-container" style="background-color: white">
       <div class="svg-image">
         <svg
           class="fill-svg"
@@ -1026,6 +1026,50 @@
           <i class="bi bi-check-circle"></i> Save your favorites to book again
           and again
         </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 mt-4 img-container" style="background-color: white">
+      <img
+        src="../../assets/images/earth.png"
+        style="width: 100%; height: auto"
+        alt=""
+      />
+    </div>
+    <div class="col-lg-8 col-12">
+      <div class="first-container">
+        <h1 style="font-weight: bold">Cities where we work.</h1>
+        <form>
+          <mat-form-field
+            class="Input-form"
+            class="input-full-width"
+            appearance="outline"
+          >
+            <mat-label>Where's Your Next Adventure?</mat-label>
+            <input
+              #CitiesInput
+              type="text"
+              placeholder=" Enter Your City Name"
+              matInput
+              [formControl]="myCitiesControl"
+              [matAutocomplete]="autoCities"
+              (focus)="filterCities()"
+              (input)="filterCities()"
+            />
+            <mat-autocomplete requireSelection #autoCities="matAutocomplete">
+              <mat-option *ngFor="let city of filteredCities" [value]="city">
+                {{ city }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <button mat-flat-button color="primary" class="search-button">
+            <mat-icon class="icon-display">search</mat-icon>
+          </button>
+        </form>
       </div>
     </div>
   </div>

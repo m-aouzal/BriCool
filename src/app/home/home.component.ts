@@ -34,8 +34,29 @@ import { MatDividerModule } from '@angular/material/divider';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  @ViewChild('input') input: ElementRef<HTMLInputElement>;
-  myControl = new FormControl('');
+  @ViewChild('OptionsInput') optionsInput: ElementRef<HTMLInputElement>;
+  @ViewChild('CitiesInput') citiesInput: ElementRef<HTMLInputElement>;
+  myOptionsControl = new FormControl('');
+  myCitiesControl = new FormControl('');
+  cities: string[] = [
+    'Casablanca',
+    'Rabat',
+    'Marrakech',
+    'Fes',
+    'Tangier',
+    'Agadir',
+    'Meknes',
+    'Oujda',
+    'Kenitra',
+    'Tetouan',
+    'Safi',
+    'Mohammedia',
+    'Beni Mellal',
+    'Khouribga',
+    'Nador',
+    // Add more cities as needed
+  ];
+
   options: string[] = [
     'Carpenter',
     'Electrician',
@@ -157,14 +178,22 @@ export class HomeComponent {
   ];
 
   filteredOptions: string[];
+  filteredCities: string[];
 
   constructor() {
     this.filteredOptions = this.options.slice();
+    this.filteredCities = this.cities.slice();
   }
 
-  filter(): void {
-    const filterValue = this.input.nativeElement.value.toLowerCase();
+  filterOptions(): void {
+    const filterValue = this.optionsInput.nativeElement.value.toLowerCase();
     this.filteredOptions = this.options.filter((o) =>
+      o.toLowerCase().includes(filterValue)
+    );
+  }
+  filterCities(): void {
+    const filterValue = this.citiesInput.nativeElement.value.toLowerCase();
+    this.filteredCities = this.cities.filter((o) =>
       o.toLowerCase().includes(filterValue)
     );
   }
