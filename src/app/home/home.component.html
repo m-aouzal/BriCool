@@ -857,7 +857,7 @@
 </div>
 <div class="container Taskers">
   <!-- tasker.component.html -->
-  <div class="Projects row d-flex justify-content-between my-3 gx-5">
+  <div class="Projects row d-flex justify-content-center my-3 gx-5">
     <div class="col-10 col-lg-6 my-3" *ngFor="let tasker of taskers">
       <div class="card">
         <div class="card-body row">
@@ -1035,14 +1035,14 @@
   <div class="row">
     <div class="col-lg-4 mt-4 img-container" style="background-color: white">
       <img
-        src="../../assets/images/earth.png"
+        src="../../assets/images/morocco.png"
         style="width: 100%; height: auto"
         alt=""
       />
     </div>
     <div class="col-lg-8 col-12">
-      <div class="p-5 m-5">
-        <h1 style="font-weight: bold">Cities where we work.</h1>
+      <div class="first-container">
+        <h1 style="font-weight: 600">Cities where we work.</h1>
         <form>
           <mat-form-field
             class="Input-form"
@@ -1066,10 +1066,82 @@
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
-          <button mat-flat-button class="btn" style="background-color: #219653">
-            Check Availability
+          <button
+            class="btn mx-2"
+            style="background-color: #219653; color: white; font-size: 1rem"
+          >
+            <i
+              class="bi bi-search"
+              style="font-size: 1.8rem; font-weight: 900"
+            ></i>
           </button>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row p-3 justify-content-center" style="background-color: #ecf3ff">
+    <div class="text-center" style="font-size: 2.2rem; font-weight: 600">
+      Ready To Get Started ?
+    </div>
+    <div class="col-lg-5 m-3 border-lg-right">
+      <div>
+        <img
+          class="img-fluid"
+          style="height: 300px; width: auto"
+          src="../../assets/images/screen.png"
+          alt=""
+        />
+      </div>
+      <div class="text-center" style="font-size: 1.5rem; font-weight: 500">
+        Hear that? The Sweet Sight Of Relief. Start Getting More Done.
+      </div>
+      <div class="text-center mt-3">
+        <button
+          class="btn btn-primary"
+          style="
+            width: 190px !important;
+            background-color: #0652dd;
+            color: white;
+            font-size: 1.5rem;
+          "
+        >
+          Sign up
+        </button>
+      </div>
+    </div>
+    <div class="col-lg-1 vr">
+      <div style="height: 100%"></div>
+    </div>
+    <div class="col-10 hr">
+      <hr />
+    </div>
+    <div class="col-lg-5 mt-5 m-lg-3">
+      <div>
+        <img
+          class="img-fluid"
+          style="height: 300px; width: auto"
+          src="../../assets/images/amico.png"
+          alt=""
+        />
+      </div>
+      <div class="text-center" style="font-size: 1.5rem; font-weight: 500">
+        Grow your own business while saving the day for busy neighbors.
+      </div>
+      <div class="text-center mt-3">
+        <button
+          class="btn btn-primary"
+          style="
+            width: 220px !important;
+            background-color: #0652dd;
+            color: white;
+            font-size: 1.5rem;
+          "
+        >
+          Become A Tasker
+        </button>
       </div>
     </div>
   </div>
