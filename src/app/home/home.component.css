@@ -1,12 +1,18 @@
+
+#blueCard {
+  border-right: #000 2px solid !important;
+  border-bottom: none !important;
+}
+
 @media (max-width: 992px) {
   .img-container {
     display: none;
   }
-  .hr {
-    display: block;
-  }
-  .vr {
-    display: none;
+  
+  #blueCard {
+    border-right: none !important;
+    border-bottom: #000 solid 2px !important;
+    padding-bottom: 30px;
   }
 }
 
