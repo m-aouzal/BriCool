@@ -1,18 +1,33 @@
-
 #blueCard {
   border-right: #000 2px solid !important;
   border-bottom: none !important;
 }
-
+.benayCard {
+  background: linear-gradient(
+    white 90px,
+    #00318b 20px,
+    #0652dd 100%
+  ) !important;
+}
+.benayCard h1{
+    margin-top: 120px;
+  }
 @media (max-width: 992px) {
   .img-container {
     display: none;
   }
-  
+
   #blueCard {
     border-right: none !important;
     border-bottom: #000 solid 2px !important;
     padding-bottom: 30px;
+   
+  }
+  .benayCard {
+    background: linear-gradient(82deg, #00318b 0%, #0652dd 100%) !important; ;
+  }
+  .benayCard h1{
+    margin-top: 3rem;
   }
 }
 

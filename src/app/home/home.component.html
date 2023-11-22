@@ -1086,7 +1086,7 @@
     <div class="text-center" style="font-size: 2.2rem; font-weight: 600">
       Ready To Get Started ?
     </div>
-    <div id="blueCard"  class="col-lg-5 m-3 ">
+    <div id="blueCard" class="col-lg-5 m-3">
       <div>
         <img
           class="img-fluid"
@@ -1140,3 +1140,44 @@
     </div>
   </div>
 </div>
+
+<div class="container-fluid">
+  <div class="row d-flex justify-content-between my-5 mx-3">
+    <div
+      class="col-5 col-sm-5 col-md-4 col-lg-3 my-3 d-flex justify-content-center"
+      *ngFor="let offer of offers"
+    >
+      <button
+        style="
+          color: #0652dd;
+          border: #0652dd solid 2px;
+          font-weight: 500;
+          font-size: 1.5rem;
+        "
+        class="px-3 btn"
+      >
+        {{ offer }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid" style="height: 300px;">
+  <div class="row d-flex benayCard" >
+    <div class="col-10 col-lg-8 p-3">
+      <h1 class="px-3" style="font-size: 3rem; color:white; line-height: 3.5rem;">
+        <span style="font-weight: 600">Suddenly it's all So </span>
+        <span style="font-style: italic; font-weight: 500">doable</span>
+      </h1>
+      <div>
+        <button class="btn px-3 py-2 m-5" style="color:#0652DD; background-color: white; font-size: 2rem; font-weight: 500;">
+          Join BriCool
+        </button>
+      </div>
+    </div>
+    <div class="col-lg-4 img-container float-end">
+      <img style="height: 450px; width: auto;" src="../../assets/images/benay.png" alt="">
+    </div>
+  </div> 
+</div>
+

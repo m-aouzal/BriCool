@@ -177,6 +177,17 @@ export class HomeComponent {
     },
   ];
 
+  offers: string[] = [
+    'Handyman Services',
+    'Help Moving',
+    'Hire Painter',
+    'Hire Plumber',
+    'Furniture Movers',
+    'Laundry Services',
+    'TV Mounting',
+    'House Cleaning',
+  ];
+
   filteredOptions: string[];
   filteredCities: string[];
 
