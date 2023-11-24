@@ -1,5 +1,5 @@
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatCardModule } from '@angular/material/card';
+
 import { MatIconModule } from '@angular/material/icon';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,21 +11,19 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { Project } from './project';
 import { Tasker } from './tasker';
-import { MatDividerModule } from '@angular/material/divider';
-
 
 import { JobsSearchBarComponent } from './jobs-search-bar/jobs-search-bar.component';
 import { ProjectsCardComponent } from './projects-card/projects-card.component';
-
+import { TakersCardComponent } from './takers-card/takers-card.component';
+import { CitiesSearchBarComponent } from './cities-search-bar/cities-search-bar.component';
+import { FooterComponent } from './footer/footer.component';
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
-    MatDividerModule,
     MatButtonModule,
     MatIconModule,
     CommonModule,
-    MatCardModule,
     FlexLayoutModule,
     FormsModule,
     MatFormFieldModule,
@@ -35,15 +33,46 @@ import { ProjectsCardComponent } from './projects-card/projects-card.component';
     AsyncPipe,
     JobsSearchBarComponent,
     ProjectsCardComponent,
+    TakersCardComponent,
+    CitiesSearchBarComponent,
+    FooterComponent
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
 
-  @ViewChild('CitiesInput') citiesInput: ElementRef<HTMLInputElement>;
-  
-  myCitiesControl = new FormControl('');
+  options: string[] = [
+    'Carpenter',
+    'Electrician',
+    'Painter',
+    'Mechanic',
+    'Chef',
+    'Developer',
+    'Designer',
+    'Writer',
+    'Doctor',
+    'Teacher',
+    'Plumber',
+    'Engineer',
+    'Artist',
+    'Photographer',
+    'Accountant',
+    'Lawyer',
+    'Nurse',
+    'Architect',
+    'Scientist',
+    'Librarian',
+    'Pilot',
+    'Farmer',
+    'Police Officer',
+    'Firefighter',
+    'Salesperson',
+    'Barista',
+    'Musician',
+    'Athlete',
+  ];
+ 
   cities: string[] = [
     'Casablanca',
     'Rabat',
@@ -63,8 +92,34 @@ export class HomeComponent {
     // Add more cities as needed
   ];
 
- 
- 
+  projects: Project[] = [
+    {
+      title: 'Plumbing Upgrade',
+      src: 'aouzal.jpeg',
+      min: 100,
+      max: 200,
+    },
+    {
+      title: 'Electrical Renovation',
+      src: 'path/to/image2.jpg',
+      min: 150,
+      max: 250,
+    },
+    { title: 'Deep Cleaning', src: 'path/to/image3.jpg', min: 120, max: 180 },
+    {
+      title: 'New Construction',
+      src: 'path/to/image4.jpg',
+      min: 200,
+      max: 300,
+    },
+    {
+      title: 'Apartment Cleaning',
+      src: 'path/to/image5.jpg',
+      min: 80,
+      max: 150,
+    },
+    { title: 'Office Upgrade', src: 'path/to/image6.jpg', min: 170, max: 220 },
+  ];
   taskers: Tasker[] = [
     {
       name: 'Ali Mohamed',
@@ -137,18 +192,7 @@ export class HomeComponent {
     'House Cleaning',
   ];
 
- 
-  filteredCities: string[];
-
-  constructor() {
-    this.filteredCities = this.cities.slice();
-  }
-
   
-  filterCities(): void {
-    const filterValue = this.citiesInput.nativeElement.value.toLowerCase();
-    this.filteredCities = this.cities.filter((o) =>
-      o.toLowerCase().includes(filterValue)
-    );
-  }
+
+ 
 }

@@ -7,9 +7,9 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
-import {Input} from '@angular/core';
+import { Input } from '@angular/core';
 @Component({
-  selector: 'app-jobs-search-bar',
+  selector: 'app-cities-search-bar',
   standalone: true,
   imports: [
     CommonModule,
@@ -22,21 +22,21 @@ import {Input} from '@angular/core';
     MatButtonModule,
     MatCardModule,
   ],
-  templateUrl: './jobs-search-bar.component.html',
-  styleUrls: ['./jobs-search-bar.component.css'],
+  templateUrl: './cities-search-bar.component.html',
+  styleUrls: ['./cities-search-bar.component.css'],
 })
-export class JobsSearchBarComponent {
-  @ViewChild('OptionsInput') optionsInput: ElementRef<HTMLInputElement>;
-  @Input() options:string[] = [];
-  myOptionsControl = new FormControl('');
-  
-  filteredOptions: string[];
+export class CitiesSearchBarComponent {
+  @Input() cities: string[] = [];
+  @ViewChild('CitiesInput') citiesInput: ElementRef<HTMLInputElement>;
+  myCitiesControl = new FormControl('');
+  filteredCities: string[];
   constructor() {
-    this.filteredOptions = this.options.slice();
+    this.filteredCities = this.cities.slice();
   }
-  filterOptions(): void {
-    const filterValue = this.optionsInput.nativeElement.value.toLowerCase();
-    this.filteredOptions = this.options.filter((o) =>
+
+  filterCities(): void {
+    const filterValue = this.citiesInput.nativeElement.value.toLowerCase();
+    this.filteredCities = this.cities.filter((o) =>
       o.toLowerCase().includes(filterValue)
     );
   }
