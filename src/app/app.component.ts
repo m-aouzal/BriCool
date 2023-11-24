@@ -9,6 +9,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { HomeComponent } from './home/home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FooterComponent } from './home/footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatButtonModule,
     MatMenuModule,
     HomeComponent,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FooterComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
