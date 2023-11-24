@@ -15,6 +15,7 @@ import { MatDividerModule } from '@angular/material/divider';
 
 
 import { JobsSearchBarComponent } from './jobs-search-bar/jobs-search-bar.component';
+import { ProjectsCardComponent } from './projects-card/projects-card.component';
 
 @Component({
   selector: 'app-home',
@@ -33,6 +34,7 @@ import { JobsSearchBarComponent } from './jobs-search-bar/jobs-search-bar.compon
     ReactiveFormsModule,
     AsyncPipe,
     JobsSearchBarComponent,
+    ProjectsCardComponent,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
