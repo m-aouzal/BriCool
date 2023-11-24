@@ -13,6 +13,9 @@ import { Project } from './project';
 import { Tasker } from './tasker';
 import { MatDividerModule } from '@angular/material/divider';
 
+
+import { JobsSearchBarComponent } from './jobs-search-bar/jobs-search-bar.component';
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -29,14 +32,15 @@ import { MatDividerModule } from '@angular/material/divider';
     MatAutocompleteModule,
     ReactiveFormsModule,
     AsyncPipe,
+    JobsSearchBarComponent,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  @ViewChild('OptionsInput') optionsInput: ElementRef<HTMLInputElement>;
+
   @ViewChild('CitiesInput') citiesInput: ElementRef<HTMLInputElement>;
-  myOptionsControl = new FormControl('');
+  
   myCitiesControl = new FormControl('');
   cities: string[] = [
     'Casablanca',
@@ -57,36 +61,7 @@ export class HomeComponent {
     // Add more cities as needed
   ];
 
-  options: string[] = [
-    'Carpenter',
-    'Electrician',
-    'Painter',
-    'Mechanic',
-    'Chef',
-    'Developer',
-    'Designer',
-    'Writer',
-    'Doctor',
-    'Teacher',
-    'Plumber',
-    'Engineer',
-    'Artist',
-    'Photographer',
-    'Accountant',
-    'Lawyer',
-    'Nurse',
-    'Architect',
-    'Scientist',
-    'Librarian',
-    'Pilot',
-    'Farmer',
-    'Police Officer',
-    'Firefighter',
-    'Salesperson',
-    'Barista',
-    'Musician',
-    'Athlete',
-  ];
+ 
   projects: Project[] = [
     {
       title: 'Plumbing Upgrade',
@@ -188,20 +163,14 @@ export class HomeComponent {
     'House Cleaning',
   ];
 
-  filteredOptions: string[];
+ 
   filteredCities: string[];
 
   constructor() {
-    this.filteredOptions = this.options.slice();
     this.filteredCities = this.cities.slice();
   }
 
-  filterOptions(): void {
-    const filterValue = this.optionsInput.nativeElement.value.toLowerCase();
-    this.filteredOptions = this.options.filter((o) =>
-      o.toLowerCase().includes(filterValue)
-    );
-  }
+  
   filterCities(): void {
     const filterValue = this.citiesInput.nativeElement.value.toLowerCase();
     this.filteredCities = this.cities.filter((o) =>
