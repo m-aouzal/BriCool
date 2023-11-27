@@ -9,6 +9,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { HomeComponent } from './home/home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { RouterModule } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -24,8 +27,19 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatMenuModule,
     HomeComponent,
     FlexLayoutModule,
+    RouterModule,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {}
+export class AppComponent {
+  pageNotFound: boolean = false;
+  constructor(private router: Router) {}
+  ngOnInit() {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        this.pageNotFound = event.urlAfterRedirects.includes('404');
+      });
+  }
+}
