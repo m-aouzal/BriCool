@@ -8,4 +8,6 @@ export const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: '404', component: PageNotFoundComponent },
   { path: '**', redirectTo: '404' }
+  
 ];
+

@@ -10,13 +10,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { Project } from './project';
-import { Tasker } from './tasker';
+import { Tasker } from '../Interfaces/tasker';
 
 import { JobsSearchBarComponent } from './jobs-search-bar/jobs-search-bar.component';
 import { ProjectsCardComponent } from './projects-card/projects-card.component';
 import { TakersCardComponent } from './takers-card/takers-card.component';
 import { CitiesSearchBarComponent } from './cities-search-bar/cities-search-bar.component';
 import { FooterComponent } from './footer/footer.component';
+import { Occupation } from '../Interfaces/occupation';
+import { City } from '../Interfaces/City';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -35,62 +37,15 @@ import { FooterComponent } from './footer/footer.component';
     ProjectsCardComponent,
     TakersCardComponent,
     CitiesSearchBarComponent,
-    FooterComponent
+    FooterComponent,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
+  options: string[] = Object.values(Occupation);
 
-  options: string[] = [
-    'Carpenter',
-    'Electrician',
-    'Painter',
-    'Mechanic',
-    'Chef',
-    'Developer',
-    'Designer',
-    'Writer',
-    'Doctor',
-    'Teacher',
-    'Plumber',
-    'Engineer',
-    'Artist',
-    'Photographer',
-    'Accountant',
-    'Lawyer',
-    'Nurse',
-    'Architect',
-    'Scientist',
-    'Librarian',
-    'Pilot',
-    'Farmer',
-    'Police Officer',
-    'Firefighter',
-    'Salesperson',
-    'Barista',
-    'Musician',
-    'Athlete',
-  ];
- 
-  cities: string[] = [
-    'Casablanca',
-    'Rabat',
-    'Marrakech',
-    'Fes',
-    'Tangier',
-    'Agadir',
-    'Meknes',
-    'Oujda',
-    'Kenitra',
-    'Tetouan',
-    'Safi',
-    'Mohammedia',
-    'Beni Mellal',
-    'Khouribga',
-    'Nador',
-    // Add more cities as needed
-  ];
+  cities: string[] = Object.values(City);
 
   projects: Project[] = [
     {
@@ -129,9 +84,9 @@ export class HomeComponent {
       rating: 95,
       img: 'ali-mohamed.jpg', // Placeholder image filename
       skills: [
-        { description: 'Plumbing', pricePerHour: 70 },
-        { description: 'Electrical Repair', pricePerHour: 100 },
-        { description: 'Carpentry', pricePerHour: 120 },
+        { description: 'Plumbing' },
+        { description: 'Electrical Repair' },
+        { description: 'Carpentry' },
       ],
       completedTaskNumber: 120,
     },
@@ -144,9 +99,9 @@ export class HomeComponent {
       rating: 78,
       img: 'aouzal.jpeg', // Placeholder image filename
       skills: [
-        { description: 'Computer Repair', pricePerHour: 350 },
-        { description: 'Network Setup', pricePerHour: 300 },
-        { description: 'Software Installation', pricePerHour: 250 },
+        { description: 'Computer Repair' },
+        { description: 'Network Setup' },
+        { description: 'Software Installation' },
       ],
       completedTaskNumber: 60,
     },
@@ -159,9 +114,9 @@ export class HomeComponent {
       rating: 85,
       img: 'ahmed-khalid.jpg', // Placeholder image filename
       skills: [
-        { description: 'Custom Furniture', pricePerHour: 60 },
-        { description: 'Wood Carving', pricePerHour: 80 },
-        { description: 'Cabinet Making', pricePerHour: 60 },
+        { description: 'Custom Furniture' },
+        { description: 'Wood Carving' },
+        { description: 'Cabinet Making' },
       ],
       completedTaskNumber: 90,
     },
@@ -173,9 +128,9 @@ export class HomeComponent {
       rating: 91,
       img: 'sara-hassan.jpg', // Placeholder image filename
       skills: [
-        { description: 'Electrical Wiring', pricePerHour: 80 },
-        { description: 'Lighting Installation', pricePerHour: 90 },
-        { description: 'Appliance Repair', pricePerHour: 120 },
+        { description: 'Electrical Wiring' },
+        { description: 'Lighting Installation' },
+        { description: 'Appliance Repair' },
       ],
       completedTaskNumber: 110,
     },
@@ -191,8 +146,4 @@ export class HomeComponent {
     'TV Mounting',
     'House Cleaning',
   ];
-
-  
-
- 
 }

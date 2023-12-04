@@ -9,5 +9,3 @@ export interface Tasker {
   skills: Skill[];
   completedTaskNumber: number;
 }
-
-

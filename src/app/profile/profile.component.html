@@ -1,0 +1,23 @@
+<!-- This is the template for the seller profile component -->
+<div class="container mt-5">
+  <h2>Seller Profile</h2>
+
+  <!-- Personal Information -->
+  <div class="mb-3">
+    <h3>Personal Information</h3>
+    <p><strong>First Name:</strong> {{ seller.firstName }}</p>
+    <p><strong>Last Name:</strong> {{ seller.lastName }}</p>
+    <p><strong>Email:</strong> {{ seller.email }}</p>
+    <p><strong>Phone Number:</strong> {{ seller.phoneNumber }}</p>
+  </div>
+
+  <!-- Seller Information -->
+  <div class="mb-3">
+    <h3>Seller Information</h3>
+    <p><strong>Occupations:</strong> {{ seller.occupations.join(', ') }}</p>
+    <p><strong>Date of Birth:</strong> {{ seller.dateOfBirth | date }}</p>
+    <p><strong>Years of Experience:</strong> {{ seller.yearsOfExperience }}</p>
+    <p><strong>City:</strong> {{ seller.city }}</p>
+    <p><strong>Gender:</strong> {{ seller.gender }}</p>
+  </div>
+</div>
