@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -34,12 +35,17 @@ import { filter } from 'rxjs';
 })
 export class AppComponent {
   pageNotFound: boolean = false;
+  pageSignUp : boolean = false;
   constructor(private router: Router) {}
   ngOnInit() {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
         this.pageNotFound = event.urlAfterRedirects.includes('404');
+        this.pageSignUp = event.urlAfterRedirects.includes('signUp');
       });
+  }
+  navigateToSignupSeller() {
+    this.router.navigate(['/signUp/seller']);
   }
 }

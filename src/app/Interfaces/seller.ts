@@ -1,6 +1,6 @@
 import { Gender } from './gender';
 import { Occupation } from './occupation';
-import { Image } from './Image';
+import { Image } from './image';
 import { Person } from './Person';
 
 export interface Seller extends Person {
