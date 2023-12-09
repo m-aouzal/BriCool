@@ -33,4 +33,8 @@ export class SellerSignUpComponent {
       console.log('Form is invalid. Please check the fields.');
     }
   }
+  
+  onContinue(){
+    
+  }
 }
