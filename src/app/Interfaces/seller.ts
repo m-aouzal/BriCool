@@ -1,7 +1,8 @@
 import { Gender } from './gender';
 import { Occupation } from './occupation';
 import { Image } from './image';
-import { Person } from './Person';
+import { Person } from './person';
+import {Project} from "../home/project";
 
 export interface Seller extends Person {
   occupations: Occupation[];
@@ -11,7 +12,7 @@ export interface Seller extends Person {
   gender: Gender;
   CIN: string;
   image: Image;
-  projet?: string;
+  projects: Project[];//add project as interface instead of string
   businessHours: string;
   regionalOperations: string;
 }

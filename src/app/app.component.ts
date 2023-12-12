@@ -47,5 +47,7 @@ export class AppComponent {
   }
   navigateToSignupSeller() {
     this.router.navigate(['/signUp/seller']);
+  }navigateToHomePage() {
+    this.router.navigate(['/home']);
   }
 }

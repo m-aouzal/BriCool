@@ -1,4 +1,4 @@
-export interface Project {  
+export interface Project {
     title:string;
     src:string;
     min:number;
