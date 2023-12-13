@@ -13,7 +13,6 @@ import { RouterModule } from '@angular/router';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 
-
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -35,7 +34,7 @@ import { filter } from 'rxjs';
 })
 export class AppComponent {
   pageNotFound: boolean = false;
-  pageSignUp : boolean = false;
+  pageSignUp: boolean = false;
   constructor(private router: Router) {}
   ngOnInit() {
     this.router.events
@@ -47,7 +46,8 @@ export class AppComponent {
   }
   navigateToSignupSeller() {
     this.router.navigate(['/signUp/seller']);
-  }navigateToHomePage() {
+  }
+  navigateToHomePage() {
     this.router.navigate(['/home']);
   }
 }
