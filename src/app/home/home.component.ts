@@ -18,7 +18,7 @@ import { TakersCardComponent } from './takers-card/takers-card.component';
 import { CitiesSearchBarComponent } from './cities-search-bar/cities-search-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { Occupation } from '../Interfaces/occupation';
-import { City } from '../Interfaces/City';
+import { City } from '../Interfaces/city';
 @Component({
   selector: 'app-home',
   standalone: true,

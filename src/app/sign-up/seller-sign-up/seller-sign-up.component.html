@@ -72,6 +72,31 @@
           />
         </div>
 
+        <mat-form-field
+          id="dateInput"
+          style="background-color: white !important; width: 100%"
+        >
+          <input
+            matInput
+            [matDatepicker]="datepicker"
+            id="YearsOfBirth"
+            formControlName="YearsOfBirth"
+            placeholder="Insert Your Birth Date"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="datepicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #datepicker>
+            <mat-datepicker-actions>
+              <button mat-button matDatepickerCancel>Cancel</button>
+              <button mat-raised-button color="primary" matDatepickerApply>
+                Apply
+              </button>
+            </mat-datepicker-actions>
+          </mat-datepicker>
+        </mat-form-field>
+
         <button
           type="button"
           class="btn btn-primary"
@@ -82,39 +107,49 @@
         </button>
       </div>
       <div *ngIf="count == 2">
-        <div class="container mt-3">
-          <div class="row">
-            <div class="mb-4">
-              <input
-                type="text"
-                class="form-control"
-                id="city"
-                formControlName="city"
-                placeholder="City"
-              />
-            </div>
+        <div class="row">
+          <div class="mb-4">
+            <input
+              #CitiesInput
+              class="form-control"
+              type="text"
+              id="city"
+              placeholder=" Enter Your City Name"
+              matInput
+              formControlName="city"
+              [matAutocomplete]="autoCities"
+              (focus)="filterCities()"
+              (input)="filterCities()"
+            />
+            <mat-autocomplete requireSelection #autoCities="matAutocomplete">
+              <mat-option *ngFor="let city of filteredCities" [value]="city">
+                {{ city }}
+              </mat-option>
+            </mat-autocomplete>
 
-            <div class="mb-4">
+            <div class="mt-4 mb-4">
               <input
+                #OptionsInput
                 type="text"
+                placeholder="Occuptation"
                 class="form-control"
-                id="Occupation"
+                matInput
                 formControlName="Occupation"
-                placeholder="Occupation"
+                [matAutocomplete]="autoOptions"
+                (input)="filterOptions()"
+                (focus)="filterOptions()"
               />
+              <mat-autocomplete requireSelection #autoOptions="matAutocomplete">
+                <mat-option
+                  *ngFor="let option of filteredOptions"
+                  [value]="option"
+                >
+                  {{ option }}
+                </mat-option>
+              </mat-autocomplete>
             </div>
 
             <div class="mb-4">
-              <input
-                type="text"
-                class="form-control"
-                id="YearsOfBirth"
-                formControlName="YearsOfBirth"
-                placeholder="Years of Birth"
-              />
-            </div>
-
-             <div class="mb-4">
               <input
                 type="password"
                 class="form-control"
@@ -133,21 +168,27 @@
                 placeholder="Password Verification"
               />
             </div>
-           
-            <div class="col-md-4">
-              <button
-                (click)="onReturn()"
-                type="button"
-                class="btn btn-primary"
-                style="width: 100%; background-color: #0652dd"
-              >
-                Return
-              </button>
-            </div>
-            <div class="col-md-8">
-              <button type="button" class="btn btn-success" style="width: 100%">
-                Sign Up
-              </button>
+            <div class="row justify-content-between">
+              <div class="col-12 col-md-8 mb-3 mb-md-0 order-md-2">
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  style="width: 100%"
+                >
+                  Sign Up
+                </button>
+              </div>
+
+              <div class="col-12 col-md-3 order-md-1">
+                <button
+                  (click)="onReturn()"
+                  type="button"
+                  class="btn btn-primary"
+                  style="width: 100%; background-color: #0652dd"
+                >
+                  Return
+                </button>
+              </div>
             </div>
           </div>
         </div>
