@@ -1,34 +1,4 @@
-<!--
-&lt;!&ndash;this is how we can extract information  This is the template for the sell profile component &ndash;&gt;
-this is how we can extract information
-<div class="container mt-5">
-  <h2>sell Profile</h2>
 
-  &lt;!&ndash; Personal Information &ndash;&gt;
-  <div class="mb-3">
-    <h3>Personal Information</h3>
-    <p><strong>First Name:</strong> {{ sell.firstName }}</p>
-    <p><strong>Last Name:</strong> {{ sell.lastName }}</p>
-    <p><strong>Email:</strong> {{ sell.email }}</p>
-    <p><strong>Phone Number:</strong> {{ sell.phoneNumber }}</p>
-    <img src="{{sell.image}}">
-  </div>
-
-  &lt;!&ndash; sell Information &ndash;&gt;
-  <div class="mb-3">
-    <h3>sell Information</h3>
-    <p><strong>dfOccupations:</strong> {{ sell.occupations.join(', ') }}</p>
-    <p><strong>Date of Birth:</strong> {{ sell.dateOfBirth | date }}</p>
-    <p><strong>Years of Experience:</strong> {{ sell.yearsOfExperience }}</p>
-    <p><strong>City:</strong> {{ sell.city }}</p>
-    <p><strong>Gender:</strong> {{ sell.gender }}</p>
-    <div *ngFor="let project of sell.projects">
-      <p>{{project.title}}</p>
-      <img src="{{project.src}}">
-    </div>
-  </div>
-</div>
--->
 <div class="container " *ngFor="let sell of seller">
   <div class="row">
     <div  class="position-relative mt-5  col-4">
@@ -93,3 +63,35 @@ this is how we can extract information
     </div>
 </div>
 
+
+<!--
+&lt;!&ndash;this is how we can extract information  This is the template for the sell profile component &ndash;&gt;
+this is how we can extract information
+<div class="container mt-5">
+  <h2>sell Profile</h2>
+
+  &lt;!&ndash; Personal Information &ndash;&gt;
+  <div class="mb-3">
+    <h3>Personal Information</h3>
+    <p><strong>First Name:</strong> {{ sell.firstName }}</p>
+    <p><strong>Last Name:</strong> {{ sell.lastName }}</p>
+    <p><strong>Email:</strong> {{ sell.email }}</p>
+    <p><strong>Phone Number:</strong> {{ sell.phoneNumber }}</p>
+    <img src="{{sell.image}}">
+  </div>
+
+  &lt;!&ndash; sell Information &ndash;&gt;
+  <div class="mb-3">
+    <h3>sell Information</h3>
+    <p><strong>dfOccupations:</strong> {{ sell.occupations.join(', ') }}</p>
+    <p><strong>Date of Birth:</strong> {{ sell.dateOfBirth | date }}</p>
+    <p><strong>Years of Experience:</strong> {{ sell.yearsOfExperience }}</p>
+    <p><strong>City:</strong> {{ sell.city }}</p>
+    <p><strong>Gender:</strong> {{ sell.gender }}</p>
+    <div *ngFor="let project of sell.projects">
+      <p>{{project.title}}</p>
+      <img src="{{project.src}}">
+    </div>
+  </div>
+</div>
+-->
