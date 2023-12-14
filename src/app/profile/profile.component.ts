@@ -1,25 +1,26 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {Seller} from '../Interfaces/seller';
 import {Gender} from "../Interfaces/gender";
+import {HttpClient, HttpClientModule, HttpErrorResponse} from "@angular/common/http";
 import {Occupation} from "../Interfaces/occupation";
-import {Project} from "../home/project";
+import {UserServiceService} from "../Services/user-service.service";
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,HttpClientModule],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit{
   m(){
     console.log('rff')
   }
   copyPhoneNumber(): void {
     // Create a temporary input element to copy the text
     const tempInput = document.createElement('input');
-    tempInput.value = this.seller.phoneNumber;
+    tempInput.value = this.seller[0].phone;
     document.body.appendChild(tempInput);
 
     // Select and copy the text
@@ -31,12 +32,12 @@ export class ProfileComponent {
 
     // Optionally, provide feedback to the user (e.g., toast notification)
     // You can implement this using a library or your own custom solution
-    alert('Phone number copied!'+this.seller.phoneNumber);
+    alert('Phone number copied!'+this.seller[0].phone);
   }
   copyMail(): void {
     // Create a temporary input element to copy the text
     const tempInput = document.createElement('input');
-    tempInput.value = this.seller.email;
+    tempInput.value = this.seller[0].email;
     document.body.appendChild(tempInput);
 
     // Select and copy the text
@@ -48,43 +49,79 @@ export class ProfileComponent {
 
     // Optionally, provide feedback to the user (e.g., toast notification)
     // You can implement this using a library or your own custom solution
-    alert('Mail copied!'+this.seller.email);
+    alert('Mail copied!'+this.seller[0].email);
+  }
+
+
+  //input an image
+  constructor(private http: HttpClient,private service :UserServiceService) {}
+
+  public getSeller(): void{
+    this.service.getSeller().subscribe(
+      (response: Seller[]) =>{
+        this.seller = response;
+      },
+      (error:HttpErrorResponse)=>{
+        alert(error.message);
+      }
+    )
+  }
+  ngOnInit() {
+    this.getSeller();
+  }
+
+  // ... existing code ...
+
+  onFileSelected(event: any): void {
+    const fileInput = event.target as HTMLInputElement;
+
+    if (fileInput.files && fileInput.files.length > 0) {
+      const selectedFile = fileInput.files[0];
+      const formData = new FormData();
+      formData.append('image', selectedFile);
+
+      // Send the form data to the backend using an API endpoint
+      this.uploadImage(formData);
+    }
+  }
+
+  uploadImage(formData: FormData): void {
+    // Replace 'your-api-endpoint' with the actual URL of your backend API endpoint
+    const apiUrl = 'http://localhost:8080/upload';
+
+    this.http.post(apiUrl, formData).subscribe(
+      (response) => {
+        // Handle the successful response from the backend
+        console.log('Image uploaded successfully:', response);
+      },
+      (error) => {
+        // Handle errors during the upload
+        console.error('Error uploading image:', error);
+      }
+    );
   }
   //@Input() seller: Seller;
-  seller: Seller = {
-    CIN: "AJ2261",
-    businessHours: "6",
+  seller:Seller[]=[{
+    businessHours: "",
+    cin: "AJ2261",
     city: "RABAT",
-    dateOfBirth: undefined,
-    email: "aymanbelhaj19@gmail.com",
-    firstName: "Ayman",
-    gender: Gender.Male,
-    image: "https://www.ziprecruiter.com/svc/fotomat/public-ziprecruiter/cms/483717698ConstructionLaborer.jpg=ws1280x960",
-    lastName: "Belhaj",
-    occupations: [Occupation.Carpenter, Occupation.Electrician],
-    password: "*******",
-    phoneNumber: "0611727669",
-    projects:[
-      {
-        title: "J5 bricool",
-        src : "https://orleanstech.wpenginepowered.com/wp-content/uploads/2022/08/OTC-Carp-1020x615-1.jpg",
-        min:100,max:200
-      },
-      {
-        title: "AMAL4 bricool",
-        src : "https://trades.viu.ca/sites/default/files/carpentry-5.jpg",
-        min:100,max:200
-      },
-      {
-        title: "J5 electrician",
-        src : "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        min:100,max:200
-      }
-    ],
-    regionalOperations: "",
-    yearsOfExperience: 5
+    completedTaskNumber: 0,
+    description: "CHI 7aja",
+    gender: Gender.MALE,
+    id: 0,
+    occupations: [Occupation.ELECTRICITE,Occupation.MACONNERIE],
+    password: "",
+    photoDeProfil: "",
+    rating: 0,
+    slogan: "",
+    ville: undefined,
+    firstName:"ayman",
+    lastName:"belhaj",
+    email:"aymanbelhaj19@gmail.com",
+    phone:"0611727669",
+    projects:[null],
 
-  }
+  }]
 
   protected readonly console = console;
 }

@@ -1,3 +1,8 @@
-import { Person } from './Person';
-
-export interface Client extends Person {}
+export interface Client {
+  id?: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  password: string;
+}
