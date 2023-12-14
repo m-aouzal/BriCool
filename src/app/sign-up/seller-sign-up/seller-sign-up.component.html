@@ -40,6 +40,15 @@
             formControlName="firstName"
             placeholder="First Name"
           />
+          <div
+            class="text-start mx-2 mt-2 error-message"
+            *ngIf="
+              personForm.get('firstName').hasError('required') &&
+              personForm.get('firstName').touched
+            "
+          >
+            First Name is required.
+          </div>
         </div>
 
         <div class="mb-4">
@@ -50,6 +59,15 @@
             formControlName="lastName"
             placeholder="Last Name"
           />
+          <div
+            class="text-start mx-2 mt-2 error-message"
+            *ngIf="
+              personForm.get('lastName').hasError('required') &&
+              personForm.get('lastName').touched
+            "
+          >
+            Last Name is required.
+          </div>
         </div>
 
         <div class="mb-4">
@@ -60,8 +78,26 @@
             formControlName="email"
             placeholder="Email"
           />
-        </div>
 
+          <div
+            class="text-start mx-2 mt-2 error-message"
+            *ngIf="
+              personForm.get('email').hasError('required') &&
+              personForm.get('email').touched
+            "
+          >
+            Email is required.
+          </div>
+          <div
+            class="text-start mt-2 error-message"
+            *ngIf="
+              personForm.get('email').hasError('pattern') &&
+              personForm.get('email').touched
+            "
+          >
+            Invalid email format.
+          </div>
+        </div>
         <div class="mb-4">
           <input
             type="text"
@@ -70,6 +106,24 @@
             formControlName="phoneNumber"
             placeholder="Phone Number"
           />
+          <div
+            class="text-start mx-2 mt-2 error-message"
+            *ngIf="
+              personForm.get('phoneNumber').hasError('required') &&
+              personForm.get('phoneNumber').touched
+            "
+          >
+            The Phone Number is required.
+          </div>
+          <div
+            class="text-start mt-2 error-message"
+            *ngIf="
+              personForm.get('phoneNumber').hasError('pattern') &&
+              personForm.get('phoneNumber').touched
+            "
+          >
+            Invalid Phone Number format.
+          </div>
         </div>
 
         <mat-form-field
@@ -96,6 +150,24 @@
             </mat-datepicker-actions>
           </mat-datepicker>
         </mat-form-field>
+        <div
+          class="text-start mb-2 error-message"
+          *ngIf="
+            personForm.get('YearsOfBirth').hasError('required') &&
+            personForm.get('YearsOfBirth').touched
+          "
+        >
+          Years of Birth is required.
+        </div>
+        <div
+          class="text-start mb-2 error-message"
+          *ngIf="
+            personForm.get('YearsOfBirth').hasError('underage') &&
+            personForm.get('YearsOfBirth').touched
+          "
+        >
+          The user is younger than 18 years.
+        </div>
 
         <button
           type="button"
@@ -127,6 +199,16 @@
               </mat-option>
             </mat-autocomplete>
 
+            <div
+              class="text-start mx-2 mb-2 error-message"
+              *ngIf="
+                personForm.get('city').hasError('notInCityList') &&
+                personForm.get('city').touched
+              "
+            >
+              Please choose a valid city from the list.
+            </div>
+
             <div class="mt-4 mb-4">
               <input
                 #OptionsInput
@@ -147,6 +229,17 @@
                   {{ option }}
                 </mat-option>
               </mat-autocomplete>
+              <div
+                class="text-start mx-2 mb-2 error-message"
+                *ngIf="
+                  personForm
+                    .get('Occupation')
+                    .hasError('notInOccupationList') &&
+                  personForm.get('Occupation').touched
+                "
+              >
+                Please choose a valid occupation from the list.
+              </div>
             </div>
 
             <div class="mb-4">
@@ -167,6 +260,27 @@
                 formControlName="passwordVerification"
                 placeholder="Password Verification"
               />
+
+              <div
+                class="text-start mx-2 mb-2 error-message"
+                *ngIf="
+                  personForm.get('passwordVerification').hasError('required') &&
+                  personForm.get('passwordVerification').touched
+                "
+              >
+                Password verification is required.
+              </div>
+              <div
+                class="text-start mx-2 mb-2 error-message"
+                *ngIf="
+                  personForm
+                    .get('passwordVerification')
+                    .hasError('passwordMismatch') &&
+                  personForm.get('passwordVerification').touched
+                "
+              >
+                Password verification does not match the password.
+              </div>
             </div>
             <div class="row justify-content-between">
               <div class="col-12 col-md-8 mb-3 mb-md-0 order-md-2">

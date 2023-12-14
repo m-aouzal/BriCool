@@ -15,6 +15,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { AsyncValidatorFn } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-seller-sign-up',
@@ -56,13 +59,29 @@ export class SellerSignUpComponent {
     this.personForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+        ],
+      ],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      city: [
+        '',
+        [Validators.required, this.isInCityListValidator(this.cities)],
+      ],
+      Occupation: [
+        '',
+        [Validators.required, this.isInOccupationListValidator(this.options)],
+      ],
+      YearsOfBirth: ['', [Validators.required, this.ageValidator()]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      city: ['', Validators.required],
-      Occupation: ['', Validators.required],
-      YearsOfBirth: ['', Validators.required],
-      passwordVerification: ['', Validators.required],
+      passwordVerification: [
+        '',
+        Validators.required,
+        this.matchPasswordValidator('password'),
+      ],
     });
   }
 
@@ -98,5 +117,73 @@ export class SellerSignUpComponent {
     this.filteredOptions = this.options.filter((o) =>
       o.toLowerCase().includes(filterValue)
     );
+  }
+
+  ageValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const selectedDate: Date = control.value;
+
+      // Check if a date is selected
+      if (!selectedDate) {
+        return { required: true };
+      }
+
+      // Calculate the age based on the current date
+      const currentDate = new Date();
+      const age = currentDate.getFullYear() - selectedDate.getFullYear();
+      const currentMonth = currentDate.getMonth();
+      const birthMonth = selectedDate.getMonth();
+      const currentDay = currentDate.getDate();
+      const birthDay = selectedDate.getDate();
+
+      // Compare the age, taking into account months and days
+      if (
+        age > 18 ||
+        (age === 18 &&
+          (currentMonth > birthMonth ||
+            (currentMonth === birthMonth && currentDay >= birthDay)))
+      ) {
+        return null; // No error, the user is 18 years or older
+      } else {
+        return { underage: true }; // Validation error, the user is younger than 18 years
+      }
+    };
+  }
+
+  isInCityListValidator(cities: string[]): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const city: string = control.value;
+
+      if (!cities.includes(city)) {
+        return { notInCityList: true };
+      }
+
+      return null;
+    };
+  }
+
+  isInOccupationListValidator(options: string[]): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const occupation: string = control.value;
+
+      if (!options.includes(occupation)) {
+        return { notInOccupationList: true };
+      }
+
+      return null;
+    };
+  }
+  matchPasswordValidator(controlName: string): AsyncValidatorFn {
+    return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
+      const passwordControl = control.root.get(controlName);
+      const password = passwordControl ? passwordControl.value : '';
+      const confirmPassword = control.value;
+
+      if (!password || !confirmPassword || password !== confirmPassword) {
+        return Promise.resolve({ passwordMismatch: true });
+      }
+
+      return Promise.resolve(null);
+    };
   }
 }
