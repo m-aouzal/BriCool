@@ -12,7 +12,12 @@
         </button>
 
         <div style="margin-left: 10px">
-          <button (click)="navigateToHomePage()" mat-button class="brand-button" style="font-size: larger">
+          <button
+            (click)="navigateToHomePage()"
+            mat-button
+            class="brand-button"
+            style="font-size: larger"
+          >
             BriC<span style="color: #0652dd">oo</span>l
           </button>
           <svg
@@ -40,7 +45,13 @@
           </span>
 
           <span id="seller" class="top-menu-item">
-            <button mat-button class="top-menu-item"  (click)="navigateToSignupSeller()">Become a Seller</button>
+            <button
+              mat-button
+              class="top-menu-item"
+              (click)="navigateToSignupSeller()"
+            >
+              Become a Seller
+            </button>
           </span>
         </div>
       </mat-toolbar-row>
@@ -75,8 +86,12 @@
           >
         </div>
         <div>
-          <a (click)="sidenav.close()" mat-button class="side-menu-item"
-             (click)="navigateToSignupSeller()"><mat-icon>people</mat-icon>Become A Seller</a
+          <a
+            (click)="sidenav.close()"
+            mat-button
+            class="side-menu-item"
+            (click)="navigateToSignupSeller()"
+            ><mat-icon>people</mat-icon>Become A Seller</a
           >
         </div>
       </div>
@@ -84,7 +99,6 @@
     <mat-sidenav-content style="background-color: white !important">
       <div [ngClass]="{ 'container-all': pageNotFound }">
         <router-outlet></router-outlet>
-        
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
