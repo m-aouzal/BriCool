@@ -89,6 +89,7 @@ export class SellerSignUpComponent {
     // Handle form submission here
     if (this.personForm.valid) {
       console.log('Form submitted:', this.personForm.value);
+      //PUSH THIS OBJECT AS A POST REQUEST
       // You can send the form data to your backend or perform any other actions.
     } else {
       console.log('Form is invalid. Please check the fields.');
