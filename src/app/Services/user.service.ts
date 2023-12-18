@@ -6,7 +6,7 @@ import { Seller } from '../Interfaces/seller';
 @Injectable({
   providedIn: 'root',
 })
-export class UserServiceService {
+export class UserService {
   constructor(private http: HttpClient) {}
 
   baseurl = 'http://localhost:8080/api/sellers';

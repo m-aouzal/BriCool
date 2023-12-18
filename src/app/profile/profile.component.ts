@@ -1,21 +1,48 @@
-import {Component, OnInit} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {Seller} from '../Interfaces/seller';
-import {Gender} from "../Interfaces/gender";
-import {HttpClient, HttpClientModule, HttpErrorResponse} from "@angular/common/http";
-import {Occupation} from "../Interfaces/occupation";
-import {UserServiceService} from "../Services/user-service.service";
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Seller } from '../Interfaces/seller';
+import { Gender } from '../Interfaces/gender';
+import {
+  HttpClient,
+  HttpClientModule,
+  HttpErrorResponse,
+} from '@angular/common/http';
+import { Occupation } from '../Interfaces/occupation';
+import { UserService } from '../Services/user.service';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule,HttpClientModule],
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
 })
-export class ProfileComponent implements OnInit{
-  m(){
-    console.log('rff')
+export class ProfileComponent implements OnInit {
+  seller: Seller[] = [
+    {
+      businessHours: '',
+      cin: 'AJ2261',
+      city: 'RABAT',
+      completedTaskNumber: 0,
+      description: 'CHI 7aja',
+      gender: Gender.MALE,
+      id: 0,
+      occupations: [Occupation.ELECTRICITE, Occupation.MACONNERIE],
+      password: '',
+      photoDeProfil: '',
+      rating: 0,
+      slogan: '',
+      ville: undefined,
+      firstName: 'ayman',
+      lastName: 'belhaj',
+      email: 'aymanbelhaj19@gmail.com',
+      phone: '0611727669',
+      projects: [null],
+    },
+  ];
+
+  m() {
+    console.log('rff');
   }
   copyPhoneNumber(): void {
     // Create a temporary input element to copy the text
@@ -32,7 +59,7 @@ export class ProfileComponent implements OnInit{
 
     // Optionally, provide feedback to the user (e.g., toast notification)
     // You can implement this using a library or your own custom solution
-    alert('Phone number copied!'+this.seller[0].phone);
+    alert('Phone number copied!' + this.seller[0].phone);
   }
   copyMail(): void {
     // Create a temporary input element to copy the text
@@ -49,22 +76,21 @@ export class ProfileComponent implements OnInit{
 
     // Optionally, provide feedback to the user (e.g., toast notification)
     // You can implement this using a library or your own custom solution
-    alert('Mail copied!'+this.seller[0].email);
+    alert('Mail copied!' + this.seller[0].email);
   }
 
-
   //input an image
-  constructor(private http: HttpClient,private service :UserServiceService) {}
+  constructor(private http: HttpClient, private service: UserService) {}
 
-  public getSeller(): void{
+  public getSeller(): void {
     this.service.getSeller().subscribe(
-      (response: Seller[]) =>{
+      (response: Seller[]) => {
         this.seller = response;
       },
-      (error:HttpErrorResponse)=>{
+      (error: HttpErrorResponse) => {
         alert(error.message);
       }
-    )
+    );
   }
   ngOnInit() {
     this.getSeller();
@@ -101,27 +127,6 @@ export class ProfileComponent implements OnInit{
     );
   }
   //@Input() seller: Seller;
-  seller:Seller[]=[{
-    businessHours: "",
-    cin: "AJ2261",
-    city: "RABAT",
-    completedTaskNumber: 0,
-    description: "CHI 7aja",
-    gender: Gender.MALE,
-    id: 0,
-    occupations: [Occupation.ELECTRICITE,Occupation.MACONNERIE],
-    password: "",
-    photoDeProfil: "",
-    rating: 0,
-    slogan: "",
-    ville: undefined,
-    firstName:"ayman",
-    lastName:"belhaj",
-    email:"aymanbelhaj19@gmail.com",
-    phone:"0611727669",
-    projects:[null],
-
-  }]
 
   protected readonly console = console;
 }

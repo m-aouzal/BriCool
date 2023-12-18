@@ -18,7 +18,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { AsyncValidatorFn } from '@angular/forms';
 import { Observable } from 'rxjs';
-
+import { Seller } from 'src/app/Interfaces/seller';
+import { UserService } from 'src/app/Services/user.service';
 @Component({
   selector: 'app-seller-sign-up',
   standalone: true,
@@ -50,7 +51,11 @@ export class SellerSignUpComponent {
   filteredOptions: string[];
   filteredCities: string[];
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private userService: UserService
+  ) {
     this.cities = Object.values(City);
     this.options = Object.values(Occupation);
     this.filteredOptions = this.options.slice();
@@ -86,11 +91,21 @@ export class SellerSignUpComponent {
   }
 
   onSubmit() {
-    // Handle form submission here
     if (this.personForm.valid) {
-      console.log('Form submitted:', this.personForm.value);
-      //PUSH THIS OBJECT AS A POST REQUEST
-      // You can send the form data to your backend or perform any other actions.
+      const sellerData: Seller = this.personForm.value as Seller;
+      console.log(sellerData);
+      // Call the postSeller method from the service
+      this.userService.postSeller(sellerData).subscribe(
+        (result) => {
+          console.log('Seller added successfully:', result);
+          //this.router.navigate(['/profile']);
+          // Handle success, such as redirecting to another page
+        },
+        (error) => {
+          console.error('Error adding seller:', error);
+          // Handle error, display a message, etc.
+        }
+      );
     } else {
       console.log('Form is invalid. Please check the fields.');
     }
@@ -175,7 +190,11 @@ export class SellerSignUpComponent {
     };
   }
   matchPasswordValidator(controlName: string): AsyncValidatorFn {
-    return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
+    return (
+      control: AbstractControl
+    ):
+      | Promise<ValidationErrors | null>
+      | Observable<ValidationErrors | null> => {
       const passwordControl = control.root.get(controlName);
       const password = passwordControl ? passwordControl.value : '';
       const confirmPassword = control.value;

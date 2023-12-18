@@ -17,5 +17,5 @@ import { RouterOutlet } from '@angular/router';
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent {
- // Set default to 'client' or 'seller'
+  // Set default to 'client' or 'seller'
 }
