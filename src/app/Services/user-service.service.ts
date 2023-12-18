@@ -9,7 +9,7 @@ import { Seller } from '../Interfaces/seller';
 export class UserServiceService {
   constructor(private http: HttpClient) {}
 
-  baseurl = '';
+  baseurl = 'http://localhost:8080/api/sellers';
   getSeller(): Observable<any> {
     return this.http.get<any>(`${this.baseurl}`);
   }
