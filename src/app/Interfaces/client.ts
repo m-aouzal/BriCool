@@ -1,8 +1,11 @@
+import { Gender } from './gender';
 export interface Client {
   id?: number;
   firstName: string;
   lastName: string;
   email: string;
-  phone: string;
   password: string;
+  phoneNumber: string;
+  yearsOfBirth: Date;
+  gender: Gender;
 }

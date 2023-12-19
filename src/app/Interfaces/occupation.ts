@@ -8,6 +8,6 @@ export enum Occupation {
   MENAGE = 'MENAGE',
   CUISINE = 'CUISINE',
   COUTURE = 'COUTURE',
-  AUTRE = 'AUTRE'
+  AUTRE = 'AUTRE',
   // ... continue with other occupations
 }

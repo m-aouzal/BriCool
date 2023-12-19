@@ -32,12 +32,12 @@ export class ProfileComponent implements OnInit {
       photoDeProfil: '',
       rating: 0,
       slogan: '',
-      ville: undefined,
       firstName: 'ayman',
       lastName: 'belhaj',
       email: 'aymanbelhaj19@gmail.com',
-      phone: '0611727669',
+      phoneNumber: '0611727669',
       projects: [null],
+      yearsOfBirth: null,
     },
   ];
 
@@ -47,7 +47,7 @@ export class ProfileComponent implements OnInit {
   copyPhoneNumber(): void {
     // Create a temporary input element to copy the text
     const tempInput = document.createElement('input');
-    tempInput.value = this.seller[0].phone;
+    tempInput.value = this.seller[0].phoneNumber;
     document.body.appendChild(tempInput);
 
     // Select and copy the text
@@ -59,7 +59,7 @@ export class ProfileComponent implements OnInit {
 
     // Optionally, provide feedback to the user (e.g., toast notification)
     // You can implement this using a library or your own custom solution
-    alert('Phone number copied!' + this.seller[0].phone);
+    alert('Phone number copied!' + this.seller[0].phoneNumber);
   }
   copyMail(): void {
     // Create a temporary input element to copy the text

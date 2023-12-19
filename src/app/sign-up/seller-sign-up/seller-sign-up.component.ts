@@ -76,6 +76,12 @@ export class SellerSignUpComponent {
         '',
         [Validators.required, this.isInCityListValidator(this.cities)],
       ],
+      gender: [
+        "",
+        [
+          Validators.required,
+        ],
+      ],
       Occupation: [
         '',
         [Validators.required, this.isInOccupationListValidator(this.options)],
@@ -92,7 +98,17 @@ export class SellerSignUpComponent {
 
   onSubmit() {
     if (this.personForm.valid) {
-      const sellerData: Seller = this.personForm.value as Seller;
+      const sellerData: Seller = {
+        firstName: this.personForm.value.firstName,
+        lastName: this.personForm.value.lastName,
+        email: this.personForm.value.email,
+        phoneNumber: this.personForm.value.phoneNumber,
+        city: this.personForm.value.city,
+        occupations: [this.personForm.value.Occupation],
+        yearsOfBirth:  this.personForm.value.YearsOfBirth,
+        password: this.personForm.value.password,
+        gender: this.personForm.value.Gender,
+      }
       console.log(sellerData);
       // Call the postSeller method from the service
       this.userService.postSeller(sellerData).subscribe(
@@ -170,7 +186,7 @@ export class SellerSignUpComponent {
     return (control: AbstractControl): ValidationErrors | null => {
       const city: string = control.value;
 
-      if (!cities.includes(city)) {
+      if (!cities.includes(city) ) {
         return { notInCityList: true };
       }
 
@@ -182,7 +198,7 @@ export class SellerSignUpComponent {
     return (control: AbstractControl): ValidationErrors | null => {
       const occupation: string = control.value;
 
-      if (!options.includes(occupation)) {
+      if (!options.includes(occupation) ) {
         return { notInOccupationList: true };
       }
 

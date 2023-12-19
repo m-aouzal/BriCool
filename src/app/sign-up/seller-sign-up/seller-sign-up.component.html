@@ -98,31 +98,41 @@
             Invalid email format.
           </div>
         </div>
+
+        <!-- Gender -->
+       
         <div class="mb-4">
-          <input
-            type="text"
-            class="form-control"
-            id="phoneNumber"
-            formControlName="phoneNumber"
-            placeholder="Phone Number"
-          />
-          <div
-            class="text-start mx-2 mt-2 error-message"
-            *ngIf="
-              personForm.get('phoneNumber').hasError('required') &&
-              personForm.get('phoneNumber').touched
-            "
-          >
-            The Phone Number is required.
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              id="male"
+              value="MALE"
+              formControlName="gender"
+            />
+            <label class="form-check-label" for="male">Male</label>
           </div>
+
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              id="female"
+              value="FEMALE"
+              formControlName="gender"
+            />
+            <label class="form-check-label" for="female">Female</label>
+          </div>
+
+          <!-- Gender Error Message -->
           <div
             class="text-start mt-2 error-message"
             *ngIf="
-              personForm.get('phoneNumber').hasError('pattern') &&
-              personForm.get('phoneNumber').touched
+              personForm.get('gender').hasError('required') &&
+              personForm.get('gender').touched
             "
           >
-            Invalid Phone Number format.
+            Gender is required.
           </div>
         </div>
 
@@ -198,16 +208,28 @@
                 {{ city }}
               </mat-option>
             </mat-autocomplete>
-
             <div
               class="text-start mx-2 mb-2 error-message"
               *ngIf="
-                personForm.get('city').hasError('notInCityList') &&
-                personForm.get('city').touched
+                personForm.get('city').hasError('required') &&
+                  personForm.get('city').touched;
+                else notRequiredError
               "
             >
               Please choose a valid city from the list.
             </div>
+
+            <ng-template #notRequiredError>
+              <div
+                class="text-start mx-2 mb-2 error-message"
+                *ngIf="
+                  personForm.get('city').hasError('notInCityList') &&
+                  personForm.get('city').touched
+                "
+              >
+                Please choose a valid city from the list.
+              </div>
+            </ng-template>
 
             <div class="mt-4 mb-4">
               <input
@@ -241,7 +263,33 @@
                 Please choose a valid occupation from the list.
               </div>
             </div>
-
+            <div class="mb-4">
+              <input
+                type="text"
+                class="form-control"
+                id="phoneNumber"
+                formControlName="phoneNumber"
+                placeholder="Phone Number"
+              />
+              <div
+                class="text-start mx-2 mt-2 error-message"
+                *ngIf="
+                  personForm.get('phoneNumber').hasError('required') &&
+                  personForm.get('phoneNumber').touched
+                "
+              >
+                The Phone Number is required.
+              </div>
+              <div
+                class="text-start mt-2 error-message"
+                *ngIf="
+                  personForm.get('phoneNumber').hasError('pattern') &&
+                  personForm.get('phoneNumber').touched
+                "
+              >
+                Invalid Phone Number format.
+              </div>
+            </div>
             <div class="mb-4">
               <input
                 type="password"
@@ -285,7 +333,6 @@
             <div class="row justify-content-between">
               <div class="col-12 col-md-8 mb-3 mb-md-0 order-md-2">
                 <button
-                  
                   type="submit"
                   class="btn btn-success"
                   style="width: 100%"
