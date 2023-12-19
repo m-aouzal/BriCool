@@ -100,7 +100,7 @@
         </div>
 
         <!-- Gender -->
-       
+
         <div class="mb-4">
           <div class="form-check form-check-inline">
             <input
@@ -121,7 +121,20 @@
               value="FEMALE"
               formControlName="gender"
             />
-            <label class="form-check-label" for="female">Female</label>
+            <label class="form-check-label" for="female"
+              >Female {{ personForm.value.Gender }}
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              id="other"
+              value="OTHER"
+              formControlName="gender"
+              (change)="onGenderSelectionChange('OTHER')"
+            />
+            <label class="form-check-label" for="other">Other</label>
           </div>
 
           <!-- Gender Error Message -->

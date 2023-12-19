@@ -20,6 +20,7 @@ import { AsyncValidatorFn } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Seller } from 'src/app/Interfaces/seller';
 import { UserService } from 'src/app/Services/user.service';
+import { Gender } from 'src/app/Interfaces/gender';
 @Component({
   selector: 'app-seller-sign-up',
   standalone: true,
@@ -76,12 +77,7 @@ export class SellerSignUpComponent {
         '',
         [Validators.required, this.isInCityListValidator(this.cities)],
       ],
-      gender: [
-        "",
-        [
-          Validators.required,
-        ],
-      ],
+      gender: ['', [Validators.required]],
       Occupation: [
         '',
         [Validators.required, this.isInOccupationListValidator(this.options)],
@@ -97,6 +93,7 @@ export class SellerSignUpComponent {
   }
 
   onSubmit() {
+    console.log(this.personForm.value);
     if (this.personForm.valid) {
       const sellerData: Seller = {
         firstName: this.personForm.value.firstName,
@@ -105,10 +102,10 @@ export class SellerSignUpComponent {
         phoneNumber: this.personForm.value.phoneNumber,
         city: this.personForm.value.city,
         occupations: [this.personForm.value.Occupation],
-        yearsOfBirth:  this.personForm.value.YearsOfBirth,
+        yearsOfBirth: this.personForm.value.YearsOfBirth,
         password: this.personForm.value.password,
-        gender: this.personForm.value.Gender,
-      }
+        gender: this.personForm.value.gender,
+      };
       console.log(sellerData);
       // Call the postSeller method from the service
       this.userService.postSeller(sellerData).subscribe(
@@ -186,7 +183,7 @@ export class SellerSignUpComponent {
     return (control: AbstractControl): ValidationErrors | null => {
       const city: string = control.value;
 
-      if (!cities.includes(city) ) {
+      if (!cities.includes(city)) {
         return { notInCityList: true };
       }
 
@@ -198,7 +195,7 @@ export class SellerSignUpComponent {
     return (control: AbstractControl): ValidationErrors | null => {
       const occupation: string = control.value;
 
-      if (!options.includes(occupation) ) {
+      if (!options.includes(occupation)) {
         return { notInOccupationList: true };
       }
 
@@ -221,5 +218,13 @@ export class SellerSignUpComponent {
 
       return Promise.resolve(null);
     };
+  }
+
+  onGenderSelectionChange(gender: string) {
+    this.personForm.patchValue({ gender }); // Update the form value
+    if (gender === 'OTHER') {
+      // Redirect to example.com for "Other" selection
+      window.location.href = 'https://psychcentral.com/';
+    }
   }
 }
