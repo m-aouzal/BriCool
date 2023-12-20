@@ -109,14 +109,13 @@ export class SellerSignUpComponent {
       console.log(sellerData);
       // Call the postSeller method from the service
       this.userService.postSeller(sellerData).subscribe(
-        (result) => {
-          console.log('Seller added successfully:', result);
-          //this.router.navigate(['/profile']);
-          // Handle success, such as redirecting to another page
+        (id: number) => {
+          console.log('Saved seller with ID:', id);
+          // Do something with the ID, if needed
         },
         (error) => {
-          console.error('Error adding seller:', error);
-          // Handle error, display a message, etc.
+          console.error('Error saving seller:', error);
+          // Handle error as needed
         }
       );
     } else {

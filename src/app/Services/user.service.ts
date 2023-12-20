@@ -13,7 +13,7 @@ export class UserService {
   getSeller(): Observable<any> {
     return this.http.get<any>(`${this.baseurl}`);
   }
-  public postSeller(employee: Seller): Observable<Seller> {
-    return this.http.post<Seller>(`${this.baseurl}`, employee);
+  postSeller(employee: Seller): Observable<number> {
+    return this.http.post<number>(`${this.baseurl}`, employee);
   }
 }
