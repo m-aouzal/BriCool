@@ -19,7 +19,7 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { AsyncValidatorFn } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Seller } from 'src/app/Interfaces/seller';
-import { UserService } from 'src/app/Services/user.service';
+import { SellerService } from 'src/app/Services/Seller.service';
 import { Gender } from 'src/app/Interfaces/gender';
 @Component({
   selector: 'app-seller-sign-up',
@@ -55,7 +55,7 @@ export class SellerSignUpComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private userService: UserService
+    private SellerService: SellerService
   ) {
     this.cities = Object.values(City);
     this.options = Object.values(Occupation);
@@ -108,10 +108,13 @@ export class SellerSignUpComponent {
       };
       console.log(sellerData);
       // Call the postSeller method from the service
-      this.userService.postSeller(sellerData).subscribe(
-        (id: number) => {
-          console.log('Saved seller with ID:', id);
-          // Do something with the ID, if needed
+      this.SellerService.postSeller(sellerData).subscribe(
+        (sellerId: number) => {
+          // Store the seller ID in a service or shared state
+          this.SellerService.setSellerId(sellerId);
+
+          // Navigate to the profile page
+          this.router.navigate(['/profile']);
         },
         (error) => {
           console.error('Error saving seller:', error);

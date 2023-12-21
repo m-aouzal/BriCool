@@ -17,4 +17,5 @@ export interface Seller extends Client {
   photoDeProfil?: string;
   occupations: Occupation[];
   projects?: Project[];
+  yearsOfExperience?: number;
 }

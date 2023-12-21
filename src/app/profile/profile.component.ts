@@ -8,7 +8,7 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Occupation } from '../Interfaces/occupation';
-import { UserService } from '../Services/user.service';
+import { SellerService } from '../Services/Seller.service';
 
 @Component({
   selector: 'app-profile',
@@ -18,28 +18,7 @@ import { UserService } from '../Services/user.service';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  seller: Seller[] = [
-    {
-      businessHours: '',
-      cin: 'AJ2261',
-      city: 'RABAT',
-      completedTaskNumber: 0,
-      description: 'CHI 7aja',
-      gender: Gender.MALE,
-      id: 0,
-      occupations: [Occupation.ELECTRICITE, Occupation.MACONNERIE],
-      password: '',
-      photoDeProfil: '',
-      rating: 0,
-      slogan: '',
-      firstName: 'ayman',
-      lastName: 'belhaj',
-      email: 'aymanbelhaj19@gmail.com',
-      phoneNumber: '0611727669',
-      projects: [null],
-      yearsOfBirth: null,
-    },
-  ];
+  seller: Seller;
 
   m() {
     console.log('rff');
@@ -80,20 +59,22 @@ export class ProfileComponent implements OnInit {
   }
 
   //input an image
-  constructor(private http: HttpClient, private service: UserService) {}
+  constructor(private http: HttpClient, private sellerService: SellerService) {}
 
-  public getSeller(): void {
-    this.service.getSeller().subscribe(
-      (response: Seller[]) => {
-        this.seller = response;
+  ngOnInit() {
+    // Retrieve seller ID from the service or shared state
+    const sellerId = this.sellerService.getSellerId();
+
+    // Fetch the complete Seller object using the ID
+    this.sellerService.getSeller().subscribe(
+      (seller: Seller) => {
+        this.seller = seller;
       },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
+      (error) => {
+        console.error('Error fetching seller:', error);
+        // Handle error as needed
       }
     );
-  }
-  ngOnInit() {
-    this.getSeller();
   }
 
   // ... existing code ...
