@@ -8,7 +8,7 @@ import { tap } from 'rxjs';
 })
 export class SellerService {
   constructor(private http: HttpClient) {}
-  sellerId: number = 1;
+  sellerId: number;
   baseurl = 'http://localhost:8080/api/sellers';
 
   setSellerId(id: number): void {
@@ -23,13 +23,13 @@ export class SellerService {
     const sellerId = this.sellerId;
 
     // Fetch the complete Seller object using the ID
-     return this.http
-       .get<Seller>(`${this.baseurl}/${sellerId}`)
-       .pipe(
-         tap((response: Seller) =>
-           console.log('Response from getSeller:', response)
-         )
-       );
+    return this.http
+      .get<Seller>(`${this.baseurl}/${sellerId}`)
+      .pipe(
+        tap((response: Seller) =>
+          console.log('Response from getSeller:', response)
+        )
+      );
   }
   postSeller(employee: Seller): Observable<number> {
     return this.http.post<number>(`${this.baseurl}`, employee);
