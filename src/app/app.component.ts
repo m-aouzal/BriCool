@@ -12,7 +12,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
-
+import { OnInit } from '@angular/core';
+import { UsersloginService } from './Services/users.login.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -32,11 +34,22 @@ import { filter } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   pageNotFound: boolean = false;
   pageSignUp: boolean = false;
-  constructor(private router: Router) {}
+  isAuthenticated = false;
+  userSub: Subscription;
+  constructor(
+    private router: Router,
+    private userLoginService: UsersloginService
+  ) {}
   ngOnInit() {
+    this.userLoginService.autoLogin();
+    this.userSub = this.userLoginService.userSubject.subscribe((user) => {
+      console.log('user', user);
+      this.isAuthenticated = !!user;
+      console.log('!user', !user);
+    });
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
@@ -52,5 +65,8 @@ export class AppComponent {
   }navigateToSignupClient() {
     console.log("huipo")
     this.router.navigate(['/signUp/client']);
+  }
+  onLogout() {
+    this.userLoginService.logout();
   }
 }
