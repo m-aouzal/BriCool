@@ -40,11 +40,14 @@
           <span>
             <button mat-button class="top-menu-item">Services</button>
           </span>
-          <span>
-            <button mat-button class="top-menu-item">Sign Up / Login</button>
+          <span *ngIf="!isAuthenticated">
+            <button mat-button class="top-menu-item">Sign Up / Login</button>  
+          </span>
+          <span *ngIf="isAuthenticated">
+            <button mat-button class="top-menu-item" (click)="onLogout()">Logout</button>  
           </span>
 
-          <span id="seller" class="top-menu-item">
+          <span *ngIf="!isAuthenticated"id="seller" class="top-menu-item">
             <button
               mat-button
               class="top-menu-item"

@@ -21,6 +21,7 @@ import { Observable } from 'rxjs';
 import { Seller } from 'src/app/Interfaces/seller';
 import { SellerService } from 'src/app/Services/Seller.service';
 import { Gender } from 'src/app/Interfaces/gender';
+import { UsersloginService } from 'src/app/Services/users.login.service';
 @Component({
   selector: 'app-seller-sign-up',
   standalone: true,
@@ -55,7 +56,8 @@ export class SellerSignUpComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private SellerService: SellerService
+    private SellerService: SellerService,
+    private usersService: UsersloginService
   ) {
     this.cities = Object.values(City);
     this.options = Object.values(Occupation);
@@ -94,33 +96,47 @@ export class SellerSignUpComponent {
 
   onSubmit() {
     console.log(this.personForm.value);
-    if (this.personForm.valid) {
-      const sellerData: Seller = {
-        firstName: this.personForm.value.firstName,
-        lastName: this.personForm.value.lastName,
-        email: this.personForm.value.email,
-        phoneNumber: this.personForm.value.phoneNumber,
-        city: this.personForm.value.city,
-        occupations: [this.personForm.value.Occupation],
-        yearsOfBirth: this.personForm.value.YearsOfBirth,
-        password: this.personForm.value.password,
-        gender: this.personForm.value.gender,
-      };
-      console.log(sellerData);
-      // Call the postSeller method from the service
-      this.SellerService.postSeller(sellerData).subscribe(
-        (sellerId: number) => {
-          // Store the seller ID in a service or shared state
-          this.SellerService.setSellerId(sellerId);
 
-          // Navigate to the profile page
-          this.router.navigate(['/profile']);
-        },
-        (error) => {
-          console.error('Error saving seller:', error);
-          // Handle error as needed
-        }
-      );
+    if (this.personForm.valid) {
+      this.usersService
+        .signUp(this.personForm.value.email, this.personForm.value.password)
+        .subscribe(
+          () => {
+            const sellerData: Seller = {
+              firstName: this.personForm.value.firstName,
+              lastName: this.personForm.value.lastName,
+              email: this.personForm.value.email,
+              phoneNumber: this.personForm.value.phoneNumber,
+              city: this.personForm.value.city,
+              occupations: [this.personForm.value.Occupation],
+              yearsOfBirth: this.personForm.value.YearsOfBirth,
+              password: this.personForm.value.password,
+              gender: this.personForm.value.gender,
+            };
+
+            console.log(sellerData);
+
+            // Call the postSeller method from the service
+            console.log('this.usersService.signUp()');
+            this.SellerService.postSeller(sellerData).subscribe(
+              (sellerId: number) => {
+                // Store the seller ID in a service or shared state
+                this.SellerService.setSellerId(sellerId);
+
+                // Navigate to the profile page
+                this.router.navigate(['/profile']);
+              },
+              (error) => {
+                console.error('Error saving seller:', error);
+                // Handle error as needed
+              }
+            );
+          },
+          (error) => {
+            console.error('Error signing up:', error);
+            // Handle error from sign-up as needed
+          }
+        );
     } else {
       console.log('Form is invalid. Please check the fields.');
     }
