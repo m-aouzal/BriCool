@@ -49,5 +49,8 @@ export class AppComponent {
   }
   navigateToHomePage() {
     this.router.navigate(['/home']);
+  }navigateToSignupClient() {
+    console.log("huipo")
+    this.router.navigate(['/signUp/client']);
   }
 }

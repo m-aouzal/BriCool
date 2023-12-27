@@ -69,6 +69,7 @@ export class ProfileComponent implements OnInit {
     this.sellerService.getSeller().subscribe(
       (seller: Seller) => {
         this.seller = seller;
+        console.log("the seller",seller)
       },
       (error) => {
         console.error('Error fetching seller:', error);
