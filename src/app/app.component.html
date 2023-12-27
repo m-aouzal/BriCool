@@ -40,11 +40,16 @@
           <span>
             <button mat-button class="top-menu-item">Services</button>
           </span>
+<<<<<<< HEAD
+          <span>
+            <button mat-button class="top-menu-item" (click)="navigateToSignupClient()">Sign Up / Login</button>
+=======
           <span *ngIf="!isAuthenticated">
             <button mat-button class="top-menu-item">Sign Up / Login</button>  
           </span>
           <span *ngIf="isAuthenticated">
             <button mat-button class="top-menu-item" (click)="onLogout()">Logout</button>  
+>>>>>>> refs/remotes/origin/master
           </span>
 
           <span *ngIf="!isAuthenticated"id="seller" class="top-menu-item">

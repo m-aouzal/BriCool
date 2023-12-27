@@ -62,6 +62,9 @@ export class AppComponent implements OnInit {
   }
   navigateToHomePage() {
     this.router.navigate(['/home']);
+  }navigateToSignupClient() {
+    console.log("huipo")
+    this.router.navigate(['/signUp/client']);
   }
   onLogout() {
     this.userLoginService.logout();
