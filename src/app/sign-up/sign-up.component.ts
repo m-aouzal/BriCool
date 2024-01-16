@@ -35,16 +35,16 @@ import { Router } from '@angular/router';
 export class SignUpComponent implements OnInit {
   // Set default to 'client' or 'seller'
 
-
-  isSellerRoute: boolean = false;
+  isSignUpRoute: boolean = false;
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    // Subscribe to the NavigationEnd event to update isSellerRoute
+    // Subscribe to the NavigationEnd event to update isSignUpRoute
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.isSellerRoute = this.router.url === '/seller';
+        this.isSignUpRoute = this.router.url === '/signUp';
+        console.log(this.isSignUpRoute);
       }
     });
   }
@@ -58,5 +58,3 @@ export class SignUpComponent implements OnInit {
     // TODO: Implement navigateToBecomeAClient method
   }
 }
-
-

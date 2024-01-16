@@ -25,7 +25,7 @@ import { Router } from '@angular/router';
   templateUrl: './signuplogin.component.html',
   styleUrls: ['./signuplogin.component.css'],
 })
-export class SignuploginComponent {
+export class SignUpLoginComponent {
   isSignUpSelected: boolean = true;
 
   constructor(private router: Router) {}
@@ -35,6 +35,7 @@ export class SignuploginComponent {
   }
 
   login() {
+    this.router.navigate(['/home']);
     // TODO: Implement navigateLogin method
     // this.router.navigate(['/login']);
   }
