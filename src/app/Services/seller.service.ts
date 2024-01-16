@@ -34,4 +34,6 @@ export class SellerService {
   postSeller(employee: Seller): Observable<number> {
     return this.http.post<number>(`${this.baseurl}`, employee);
   }
+  
 }
+
