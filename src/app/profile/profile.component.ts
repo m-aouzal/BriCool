@@ -8,7 +8,7 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Occupation } from '../Interfaces/occupation';
-import { SellerService } from '../Services/Seller.service';
+import { SellerService } from '../Services/seller.service';
 
 @Component({
   selector: 'app-profile',

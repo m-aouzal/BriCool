@@ -19,7 +19,7 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { AsyncValidatorFn } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Seller } from 'src/app/Interfaces/seller';
-import { SellerService } from 'src/app/Services/Seller.service';
+import { SellerService } from 'src/app/Services/seller.service';
 import { Gender } from 'src/app/Interfaces/gender';
 @Component({
   selector: 'app-seller-sign-up',
