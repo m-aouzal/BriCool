@@ -40,21 +40,7 @@ export class SignUpComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    // Subscribe to the NavigationEnd event to update isSignUpRoute
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.isSignUpRoute = this.router.url === '/signUp';
-        console.log(this.isSignUpRoute);
-      }
-    });
+   
   }
-  navigateToBecomeASeller() {
-    this.router.navigate(['/signup/seller']);
-    // TODO: Implement navigateToBecomeASeller method
-  }
-
-  navigateToBecomeAClient() {
-    this.router.navigate(['/signup/client']);
-    // TODO: Implement navigateToBecomeAClient method
-  }
+  
 }

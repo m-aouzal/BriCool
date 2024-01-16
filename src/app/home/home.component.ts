@@ -19,6 +19,7 @@ import { CitiesSearchBarComponent } from './cities-search-bar/cities-search-bar.
 import { FooterComponent } from './footer/footer.component';
 import { Occupation } from '../Interfaces/occupation';
 import { City } from '../Interfaces/city';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -43,6 +44,7 @@ import { City } from '../Interfaces/city';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
+  constructor(private router:Router) {}
   options: string[] = Object.values(Occupation);
 
   cities: string[] = Object.values(City);
@@ -146,4 +148,11 @@ export class HomeComponent {
     'TV Mounting',
     'House Cleaning',
   ];
+
+  
+    navigateToSignUp() {
+  this.router.navigate(['/signUp']);
+}
+    // Navigate to the sign-up page
+  
 }

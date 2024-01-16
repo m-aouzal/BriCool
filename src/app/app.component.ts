@@ -41,7 +41,8 @@ export class AppComponent {
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
         this.pageNotFound = event.urlAfterRedirects.includes('404');
-        this.pageSignUp = event.urlAfterRedirects.includes('signUp');
+        this.pageSignUp = event.urlAfterRedirects.includes('signUp') || event.urlAfterRedirects.includes('joinUs');
+        
       });
   }
   navigateToSignupSeller() {
@@ -49,5 +50,8 @@ export class AppComponent {
   }
   navigateToHomePage() {
     this.router.navigate(['/home']);
+  }
+  goToJoinUs() {
+    this.router.navigate(['/joinUs']);
   }
 }

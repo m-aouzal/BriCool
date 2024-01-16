@@ -8,6 +8,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatOptionModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NavigationEnd } from '@angular/router';
+import { OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-signuplogin',
@@ -25,24 +28,18 @@ import { Router } from '@angular/router';
   templateUrl: './signuplogin.component.html',
   styleUrls: ['./signuplogin.component.css'],
 })
-export class SignUpLoginComponent {
-  isSignUpSelected: boolean = true;
+export class SignUpLoginComponent implements OnInit {
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
-  constructor(private router: Router) {}
+  ngOnInit(): void {}
 
-  signUp() {
-    this.router.navigate(['/signUp']);
+  navigateToBecomeASeller() {
+    this.router.navigate(['/signUp/seller']);
+    // TODO: Implement navigateToBecomeASeller method
   }
 
-  login() {
-    this.router.navigate(['/home']);
-    // TODO: Implement navigateLogin method
-    // this.router.navigate(['/login']);
+  navigateToBecomeAClient() {
+    this.router.navigate(['/signUp/client']);
+    // TODO: Implement navigateToBecomeAClient method
   }
-
-
 }
-
-
-
-  
