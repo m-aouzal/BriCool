@@ -1,3 +1,19 @@
+<!-- YourComponent.html -->
 
+<div class="background-container">
+  <ng-container *ngIf="isSellerRoute; else sellerClientOptions">
+    <div class="auth-container">
+      <p>Choose an option:</p>
+      <button class="btn btn-success" (click)="navigateToBecomeASeller()">
+        Become a Seller
+      </button>
+      <button class="btn btn-success" (click)="navigateToBecomeAClient()">
+        Become a Client
+      </button>
+    </div>
+  </ng-container>
 
-<router-outlet></router-outlet>
+  <ng-template #sellerClientOptions>
+    <router-outlet></router-outlet>
+  </ng-template>
+</div>

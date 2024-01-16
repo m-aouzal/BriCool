@@ -18,9 +18,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { AsyncValidatorFn } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Seller } from 'src/app/Interfaces/seller';
-import { SellerService } from 'src/app/Services/seller.service';
-import { Gender } from 'src/app/Interfaces/gender';
+import { Client } from 'src/app/Interfaces/client';
+import { ClientService } from 'src/app/Services/client.service';
+
 @Component({
   selector: 'app-client-sign-up',
   standalone: true,
@@ -42,10 +42,7 @@ import { Gender } from 'src/app/Interfaces/gender';
   styleUrls: ['./client-sign-up.component.css'],
 })
 export class ClientSignUpComponent {
-  cities: string[] = [];
-  @ViewChild('CitiesInput') citiesInput: ElementRef<HTMLInputElement>;
-  @ViewChild('OptionsInput') optionsInput: ElementRef<HTMLInputElement>;
-  options: string[] = [];
+  
 
   personForm: FormGroup;
   count: number = 1;
@@ -55,12 +52,9 @@ export class ClientSignUpComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private SellerService: SellerService
+    private ClientService: ClientService
   ) {
-    this.cities = Object.values(City);
-    this.options = Object.values(Occupation);
-    this.filteredOptions = this.options.slice();
-    this.filteredCities = this.cities.slice();
+    
 
     this.personForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -73,15 +67,9 @@ export class ClientSignUpComponent {
         ],
       ],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
-      city: [
-        '',
-        [Validators.required, this.isInCityListValidator(this.cities)],
-      ],
+      
       gender: ['', [Validators.required]],
-      Occupation: [
-        '',
-        [Validators.required, this.isInOccupationListValidator(this.options)],
-      ],
+      
       YearsOfBirth: ['', [Validators.required, this.ageValidator()]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       passwordVerification: [
@@ -95,29 +83,27 @@ export class ClientSignUpComponent {
   onSubmit() {
     console.log(this.personForm.value);
     if (this.personForm.valid) {
-      const sellerData: Seller = {
+      const clientData: Client = {
         firstName: this.personForm.value.firstName,
         lastName: this.personForm.value.lastName,
         email: this.personForm.value.email,
         phoneNumber: this.personForm.value.phoneNumber,
-        city: this.personForm.value.city,
-        occupations: [this.personForm.value.Occupation],
         yearsOfBirth: this.personForm.value.YearsOfBirth,
         password: this.personForm.value.password,
         gender: this.personForm.value.gender,
       };
-      console.log(sellerData);
-      // Call the postSeller method from the service
-      this.SellerService.postSeller(sellerData).subscribe(
-        (sellerId: number) => {
-          // Store the seller ID in a service or shared state
-          this.SellerService.setSellerId(sellerId);
+      console.log(clientData);
+      // Call the postClient method from the service
+      this.ClientService.postClient(clientData).subscribe(
+        (clientId: number) => {
+          // Store the client ID in a service or shared state
+          this.ClientService.setClientId(clientId);
 
           // Navigate to the profile page
           this.router.navigate(['/profile']);
         },
         (error) => {
-          console.error('Error saving seller:', error);
+          console.error('Error saving client:', error);
           // Handle error as needed
         }
       );
@@ -137,18 +123,7 @@ export class ClientSignUpComponent {
     this.router.navigate(['/home']);
   }
 
-  filterCities(): void {
-    const filterValue = this.citiesInput.nativeElement.value.toLowerCase();
-    this.filteredCities = this.cities.filter((o) =>
-      o.toLowerCase().includes(filterValue)
-    );
-  }
-  filterOptions(): void {
-    const filterValue = this.optionsInput.nativeElement.value.toLowerCase();
-    this.filteredOptions = this.options.filter((o) =>
-      o.toLowerCase().includes(filterValue)
-    );
-  }
+  
 
   ageValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
@@ -181,29 +156,7 @@ export class ClientSignUpComponent {
     };
   }
 
-  isInCityListValidator(cities: string[]): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const city: string = control.value;
-
-      if (!cities.includes(city)) {
-        return { notInCityList: true };
-      }
-
-      return null;
-    };
-  }
-
-  isInOccupationListValidator(options: string[]): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const occupation: string = control.value;
-
-      if (!options.includes(occupation)) {
-        return { notInOccupationList: true };
-      }
-
-      return null;
-    };
-  }
+ 
   matchPasswordValidator(controlName: string): AsyncValidatorFn {
     return (
       control: AbstractControl
@@ -222,11 +175,5 @@ export class ClientSignUpComponent {
     };
   }
 
-  onGenderSelectionChange(gender: string) {
-    this.personForm.patchValue({ gender }); // Update the form value
-    if (gender === 'OTHER') {
-      // Redirect to example.com for "Other" selection
-      window.location.href = 'https://psychcentral.com/';
-    }
-  }
+ 
 }
