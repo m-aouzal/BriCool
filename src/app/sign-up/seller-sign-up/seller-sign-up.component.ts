@@ -19,7 +19,7 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { AsyncValidatorFn } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Seller } from 'src/app/Interfaces/seller';
-import { SellerService } from 'src/app/Services/seller.service';
+import { UserService } from 'src/app/Services/user.service';
 import { Gender } from 'src/app/Interfaces/gender';
 @Component({
   selector: 'app-seller-sign-up',
@@ -55,7 +55,7 @@ export class SellerSignUpComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private SellerService: SellerService
+    private userService: UserService
   ) {
     this.cities = Object.values(City);
     this.options = Object.values(Occupation);
@@ -107,11 +107,13 @@ export class SellerSignUpComponent {
         gender: this.personForm.value.gender,
       };
       console.log(sellerData);
+
       // Call the postSeller method from the service
-      this.SellerService.postSeller(sellerData).subscribe(
+      this.userService.postSeller(sellerData).subscribe(
         (sellerId: number) => {
-          // Store the seller ID in a service or shared state
-          this.SellerService.setSellerId(sellerId);
+          // Store the user ID and set user type in local storage
+          this.userService.setUserId(sellerId);
+          this.userService.setUserType('seller');
 
           // Navigate to the profile page
           this.router.navigate(['/profile']);

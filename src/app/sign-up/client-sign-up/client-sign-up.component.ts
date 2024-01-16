@@ -19,7 +19,7 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { AsyncValidatorFn } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Client } from 'src/app/Interfaces/client';
-import { ClientService } from 'src/app/Services/client.service';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-client-sign-up',
@@ -42,8 +42,6 @@ import { ClientService } from 'src/app/Services/client.service';
   styleUrls: ['./client-sign-up.component.css'],
 })
 export class ClientSignUpComponent {
-  
-
   personForm: FormGroup;
   count: number = 1;
   filteredOptions: string[];
@@ -52,10 +50,8 @@ export class ClientSignUpComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private ClientService: ClientService
+    private userService: UserService
   ) {
-    
-
     this.personForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -67,9 +63,9 @@ export class ClientSignUpComponent {
         ],
       ],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
-      
+
       gender: ['', [Validators.required]],
-      
+
       YearsOfBirth: ['', [Validators.required, this.ageValidator()]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       passwordVerification: [
@@ -93,11 +89,13 @@ export class ClientSignUpComponent {
         gender: this.personForm.value.gender,
       };
       console.log(clientData);
+
       // Call the postClient method from the service
-      this.ClientService.postClient(clientData).subscribe(
+      this.userService.postClient(clientData).subscribe(
         (clientId: number) => {
-          // Store the client ID in a service or shared state
-          this.ClientService.setClientId(clientId);
+          // Store the user ID and set user type in local storage
+          this.userService.setUserId(clientId);
+          this.userService.setUserType('client');
 
           // Navigate to the profile page
           this.router.navigate(['/profile']);
@@ -122,8 +120,6 @@ export class ClientSignUpComponent {
   navigateToHomePage() {
     this.router.navigate(['/home']);
   }
-
-  
 
   ageValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
@@ -156,7 +152,6 @@ export class ClientSignUpComponent {
     };
   }
 
- 
   matchPasswordValidator(controlName: string): AsyncValidatorFn {
     return (
       control: AbstractControl
@@ -174,6 +169,4 @@ export class ClientSignUpComponent {
       return Promise.resolve(null);
     };
   }
-
- 
 }
