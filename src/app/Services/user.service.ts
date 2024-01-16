@@ -50,8 +50,8 @@ export class UserService {
       );
   }
 
-  postClient(client: Client): Observable<number> {
-    return this.http.post<number>(`${this.baseUrl}/clients`, client);
+  postClient(client: Client): Observable<Client> {
+    return this.http.post<Client>(`${this.baseUrl}/clients`, client);
   }
 
   getSeller(): Observable<Seller> {
@@ -66,8 +66,8 @@ export class UserService {
       );
   }
 
-  postSeller(seller: Seller): Observable<number> {
-    return this.http.post<number>(`${this.baseUrl}/sellers`, seller);
+  postSeller(seller: Seller): Observable<Seller> {
+    return this.http.post<Seller>(`${this.baseUrl}/sellers`, seller);
   }
 
   constructor(private http: HttpClient) {}

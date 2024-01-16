@@ -110,9 +110,10 @@ export class SellerSignUpComponent {
 
       // Call the postSeller method from the service
       this.userService.postSeller(sellerData).subscribe(
-        (sellerId: number) => {
+        (seller: Seller) => {
+          console.log('Response from postSeller:', seller)
           // Store the user ID and set user type in local storage
-          this.userService.setUserId(sellerId);
+          this.userService.setUserId(seller.sellerId);
           this.userService.setUserType('seller');
 
           // Navigate to the profile page

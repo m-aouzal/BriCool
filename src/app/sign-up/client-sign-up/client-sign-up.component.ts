@@ -77,6 +77,7 @@ export class ClientSignUpComponent {
   }
 
   onSubmit() {
+    localStorage.clear();
     console.log(this.personForm.value);
     if (this.personForm.valid) {
       const clientData: Client = {
@@ -92,9 +93,9 @@ export class ClientSignUpComponent {
 
       // Call the postClient method from the service
       this.userService.postClient(clientData).subscribe(
-        (clientId: number) => {
+        (client: Client) => {
           // Store the user ID and set user type in local storage
-          this.userService.setUserId(clientId);
+          this.userService.setUserId(client.clientId);
           this.userService.setUserType('client');
 
           // Navigate to the profile page

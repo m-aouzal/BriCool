@@ -13,16 +13,19 @@ import { CommonModule, DatePipe } from '@angular/common';
 export class ProfileComponent implements OnInit {
   seller: Seller;
   client: Client;
+  user: any;
 
   constructor(private userService: UserService) {}
 
   ngOnInit() {
     const isSeller = this.userService.isSeller();
+    console.log('isSeller:', isSeller);
 
     if (isSeller) {
       this.userService.getSeller().subscribe(
         (seller: Seller) => {
-          this.seller = seller;
+          this.user as Seller;
+          this.user = seller;
         },
         (error) => {
           console.error('Error fetching seller:', error);
@@ -32,7 +35,9 @@ export class ProfileComponent implements OnInit {
     } else {
       this.userService.getClient().subscribe(
         (client: Client) => {
-          this.client = client;
+          console.log('client:', client);
+          this.user as Client;
+          this.user = client;
         },
         (error) => {
           console.error('Error fetching client:', error);
