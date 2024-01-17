@@ -8,21 +8,28 @@ import {ProfileComponent} from "./profile/profile.component";
 import {SignUpLoginComponent} from "./sign-up/signup/signuplogin.component";
 import { JoinusComponent } from './joinus/joinus.component';
 import { SigninComponent } from './signin/signin.component';
+import { canActivate, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: '404', component: PageNotFoundComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'signUpLogin', component: SignUpLoginComponent},
-  {path: "joinUs",component: JoinusComponent},
+  { path: 'profile', component: ProfileComponent, ...canActivate(() => redirectUnauthorizedTo(['login']))},
+  { path: 'signUpLogin', component: SignUpLoginComponent },
+  { path: 'joinUs', component: JoinusComponent },
 
   //using interface seller person create profile component using boostrap 5 using static data
-  {path:"login",component:SigninComponent},
+  {
+    path: 'login',
+    component: SigninComponent,
+    ...canActivate(() => redirectLoggedInTo(['home'])),
+  },
   {
     path: 'signUp',
     component: SignUpComponent,
+    ...canActivate(() => redirectLoggedInTo(['home'])),
     children: [
-      {path: '', component: SignUpLoginComponent, pathMatch: 'full'},
+      { path: '', component: SignUpLoginComponent, pathMatch: 'full' },
       { path: 'seller', component: SellerSignUpComponent },
       { path: 'client', component: ClientSignUpComponent },
     ],

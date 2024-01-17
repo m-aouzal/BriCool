@@ -12,6 +12,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { AuthService } from './Services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -35,14 +36,16 @@ import { filter } from 'rxjs';
 export class AppComponent {
   pageNotFound: boolean = false;
   pageSignUp: boolean = false;
-  constructor(private router: Router) {}
+  constructor(private router: Router,
+    private auth:AuthService) {}
   ngOnInit() {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
         this.pageNotFound = event.urlAfterRedirects.includes('404');
-        this.pageSignUp = event.urlAfterRedirects.includes('signUp') || event.urlAfterRedirects.includes('joinUs');
-        
+        this.pageSignUp =
+          event.urlAfterRedirects.includes('signUp') ||
+          event.urlAfterRedirects.includes('joinUs');
       });
   }
   navigateToSignupSeller() {
@@ -53,5 +56,10 @@ export class AppComponent {
   }
   goToJoinUs() {
     this.router.navigate(['/joinUs']);
+  }
+  signOut() {
+    this.auth.signOut().subscribe({
+      next: () => this.router.navigate(['login']),
+    });
   }
 }

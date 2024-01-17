@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Auth, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { updateProfile } from '@firebase/auth';
-import { BehaviorSubject, forkJoin, from, pluck, switchMap } from 'rxjs';
+import { BehaviorSubject, forkJoin, from, switchMap } from 'rxjs';
+import { pluck } from 'rxjs/operators';
 import { SigninCredentials, SignupCredentials } from "../Interfaces/auth.model"
 import { environment } from "../../environments/environment.development"
 
