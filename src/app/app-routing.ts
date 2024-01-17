@@ -7,6 +7,7 @@ import { ClientSignUpComponent } from './sign-up/client-sign-up/client-sign-up.c
 import {ProfileComponent} from "./profile/profile.component";
 import {SignUpLoginComponent} from "./sign-up/signup/signuplogin.component";
 import { JoinusComponent } from './joinus/joinus.component';
+import { SigninComponent } from './signin/signin.component';
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -14,7 +15,9 @@ export const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'signUpLogin', component: SignUpLoginComponent},
   {path: "joinUs",component: JoinusComponent},
+
   //using interface seller person create profile component using boostrap 5 using static data
+  {path:"login",component:SigninComponent},
   {
     path: 'signUp',
     component: SignUpComponent,

@@ -21,6 +21,8 @@ import { Observable } from 'rxjs';
 import { Seller } from 'src/app/Interfaces/seller';
 import { UserService } from 'src/app/Services/user.service';
 import { Gender } from 'src/app/Interfaces/gender';
+import { AuthService } from 'src/app/Services/auth.service';
+import { SignupCredentials } from 'src/app/Interfaces/auth.model';
 @Component({
   selector: 'app-seller-sign-up',
   standalone: true,
@@ -46,7 +48,7 @@ export class SellerSignUpComponent {
   @ViewChild('CitiesInput') citiesInput: ElementRef<HTMLInputElement>;
   @ViewChild('OptionsInput') optionsInput: ElementRef<HTMLInputElement>;
   options: string[] = [];
-
+  data:SignupCredentials = {displayName: '', email: '', password: '' };
   personForm: FormGroup;
   count: number = 1;
   filteredOptions: string[];
@@ -55,7 +57,8 @@ export class SellerSignUpComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private auth: AuthService
   ) {
     this.cities = Object.values(City);
     this.options = Object.values(Occupation);
@@ -93,9 +96,14 @@ export class SellerSignUpComponent {
   }
 
   onSubmit() {
+       this.data.displayName = this.personForm.value.firstName;
+       this.data.email = this.personForm.value.email;
+       this.data.password = this.personForm.value.password;
     console.log(this.personForm.value);
     if (this.personForm.valid) {
+      
       const sellerData: Seller = {
+     
         firstName: this.personForm.value.firstName,
         lastName: this.personForm.value.lastName,
         email: this.personForm.value.email,
@@ -116,6 +124,10 @@ export class SellerSignUpComponent {
           this.userService.setUserId(seller.sellerId);
           this.userService.setUserType('seller');
 
+           this.auth.signUp(this.data).subscribe({
+             next: () => console.log("Signed up successfully"),
+             error: (error) => console.log(error.message),
+           });
           // Navigate to the profile page
           this.router.navigate(['/profile']);
         },

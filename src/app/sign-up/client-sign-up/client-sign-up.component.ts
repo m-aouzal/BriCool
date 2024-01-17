@@ -20,7 +20,8 @@ import { AsyncValidatorFn } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Client } from 'src/app/Interfaces/client';
 import { UserService } from 'src/app/Services/user.service';
-
+import { SignupCredentials } from 'src/app/Interfaces/auth.model';
+import { AuthService } from 'src/app/Services/auth.service';
 @Component({
   selector: 'app-client-sign-up',
   standalone: true,
@@ -46,11 +47,12 @@ export class ClientSignUpComponent {
   count: number = 1;
   filteredOptions: string[];
   filteredCities: string[];
-
+  data: SignupCredentials = { displayName: '', email: '', password: '' };
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private auth: AuthService
   ) {
     this.personForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -77,6 +79,9 @@ export class ClientSignUpComponent {
   }
 
   onSubmit() {
+    this.data.displayName = this.personForm.value.firstName;
+    this.data.email = this.personForm.value.email;
+    this.data.password = this.personForm.value.password;
     localStorage.clear();
     console.log(this.personForm.value);
     if (this.personForm.valid) {
@@ -97,7 +102,10 @@ export class ClientSignUpComponent {
           // Store the user ID and set user type in local storage
           this.userService.setUserId(client.clientId);
           this.userService.setUserType('client');
-
+          this.auth.signUp(this.data).subscribe({
+            next: () => console.log('Signed up successfully'),
+            error: (error) => console.log(error.message),
+          });
           // Navigate to the profile page
           this.router.navigate(['/profile']);
         },
