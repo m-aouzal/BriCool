@@ -4,13 +4,13 @@ import { Seller } from '../Interfaces/seller';
 import { Client } from '../Interfaces/client';
 import { CommonModule, DatePipe } from '@angular/common';
 @Component({
-  selector: 'app-profile',
+  selector: 'app-myProfile',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css'],
+  templateUrl: './myProfile.component.html',
+  styleUrls: ['./myProfile.component.css'],
 })
-export class ProfileComponent implements OnInit {
+export class MyProfileComponent implements OnInit {
   seller: Seller;
   client: Client;
   user: any;
@@ -62,13 +62,13 @@ export class ProfileComponent implements OnInit {
 // import { Occupation } from '../Interfaces/occupation';
 // import { SellerService } from '../Services/seller.service';
 // @Component({
-//   selector: 'app-profile',
+//   selector: 'app-myProfile',
 //   standalone: true,
 //   imports: [CommonModule, HttpClientModule],
-//   templateUrl: './profile.component.html',
-//   styleUrls: ['./profile.component.css'],
+//   templateUrl: './myProfile.component.html',
+//   styleUrls: ['./myProfile.component.css'],
 // })
-// export class ProfileComponent implements OnInit {
+// export class MyProfileComponent implements OnInit {
 //   seller: Seller;
 
 //   m() {

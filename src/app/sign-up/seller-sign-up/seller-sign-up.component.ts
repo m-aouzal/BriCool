@@ -48,7 +48,7 @@ export class SellerSignUpComponent {
   @ViewChild('CitiesInput') citiesInput: ElementRef<HTMLInputElement>;
   @ViewChild('OptionsInput') optionsInput: ElementRef<HTMLInputElement>;
   options: string[] = [];
-  data:SignupCredentials = {displayName: '', email: '', password: '' };
+  data: SignupCredentials = { displayName: '', email: '', password: '' };
   personForm: FormGroup;
   count: number = 1;
   filteredOptions: string[];
@@ -96,14 +96,12 @@ export class SellerSignUpComponent {
   }
 
   onSubmit() {
-       this.data.displayName = this.personForm.value.firstName;
-       this.data.email = this.personForm.value.email;
-       this.data.password = this.personForm.value.password;
+    this.data.displayName = this.personForm.value.firstName;
+    this.data.email = this.personForm.value.email;
+    this.data.password = this.personForm.value.password;
     console.log(this.personForm.value);
     if (this.personForm.valid) {
-      
       const sellerData: Seller = {
-     
         firstName: this.personForm.value.firstName,
         lastName: this.personForm.value.lastName,
         email: this.personForm.value.email,
@@ -119,17 +117,19 @@ export class SellerSignUpComponent {
       // Call the postSeller method from the service
       this.userService.postSeller(sellerData).subscribe(
         (seller: Seller) => {
-          console.log('Response from postSeller:', seller)
+          console.log('Response from postSeller:', seller);
           // Store the user ID and set user type in local storage
           this.userService.setUserId(seller.sellerId);
           this.userService.setUserType('seller');
 
-           this.auth.signUp(this.data).subscribe({
-             next: () => console.log("Signed up successfully"),
-             error: (error) => console.log(error.message),
-           });
-          // Navigate to the profile page
-          this.router.navigate(['/profile']);
+          this.auth.signUp(this.data).subscribe({
+            next: () => {
+              console.log('Signed up successfully');
+              this.router.navigate(['/myProfile']);
+            },
+            error: (error) => console.log(error.message),
+          });
+          // Navigate to the myProfile page
         },
         (error) => {
           console.error('Error saving seller:', error);

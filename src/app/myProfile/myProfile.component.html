@@ -4,7 +4,7 @@
       <input type="file" (change)="onFileSelected($event)" accept="image/*" />
       <img
         style="margin-left: 50px"
-        class="rounded-3 profile-image"
+        class="rounded-3 myProfile-image"
         src="{{ seller.photoDeProfil }}"
       />
     </div>
@@ -88,7 +88,7 @@
           Ajouter Project
         </button>
       </div>
-      
+
       <div class="row">
         <div class="col-md-4 mb-4" *ngFor="let project of null">
           <div class="card h-100 d-flex flex-column">
@@ -99,7 +99,7 @@
               alt="Image 1"
             />
             <div class="card-body d-flex flex-column" style="height: 100px">
-              
+
               <p
                 class="card-text flex-grow-1 fs-6 fw-medium font-family-Poppins"
               >
@@ -113,7 +113,7 @@
   </div>
 -->
 <div class="container mt-5">
-  <h2>User Profile</h2> 
+  <h2>User Profile</h2>
 
    Personal Information
   <div class="card mb-3">
@@ -129,7 +129,7 @@
     </div>
   </div>
 
- user Information 
+ user Information
  <div class="card mb-3">
     <div class="card-header">
       <h3>user Information</h3>
@@ -141,4 +141,4 @@
       <p><strong>Gender:</strong> {{ user.gender }}</p>
     </div>
   </div>
-</div> 
+</div>

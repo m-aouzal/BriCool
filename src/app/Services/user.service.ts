@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs';
 import { Client } from '../Interfaces/client';
 import { Seller } from '../Interfaces/seller';
-
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
@@ -15,10 +15,24 @@ export class UserService {
 
   setUserId(id: number): void {
     this.userId = id;
+    localStorage.setItem('userId', id.toString());
   }
 
   getUserId(): number {
-    return this.userId;
+    const userIdString = localStorage.getItem('userId');
+    return userIdString ? +userIdString : null;
+  }
+  getUserIdByEmail(email: string): Observable<number> {
+    return this.http
+      .get<Seller>(`${this.baseUrl}/sellers/search?email=${email}`)
+      .pipe(
+        map((seller: Seller) => {
+          // Store the user ID and set user type in local storage
+          this.setUserId(seller.sellerId);
+          this.setUserType('seller');
+          return seller.sellerId;
+        })
+      );
   }
 
   getUserType(): string {
@@ -39,7 +53,7 @@ export class UserService {
   }
 
   getClient(): Observable<Client> {
-    const clientId = this.userId;
+    const clientId = this.getUserId();
 
     return this.http
       .get<Client>(`${this.baseUrl}/clients/${clientId}`)
@@ -55,7 +69,7 @@ export class UserService {
   }
 
   getSeller(): Observable<Seller> {
-    const sellerId = this.userId;
+    const sellerId = this.getUserId();
 
     return this.http
       .get<Seller>(`${this.baseUrl}/sellers/${sellerId}`)

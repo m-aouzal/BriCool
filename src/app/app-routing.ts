@@ -4,7 +4,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SellerSignUpComponent } from './sign-up/seller-sign-up/seller-sign-up.component';
 import { ClientSignUpComponent } from './sign-up/client-sign-up/client-sign-up.component';
-import {ProfileComponent} from "./profile/profile.component";
+import {MyProfileComponent} from "./myProfile/myProfile.component";
 import {SignUpLoginComponent} from "./sign-up/signup/signuplogin.component";
 import { JoinusComponent } from './joinus/joinus.component';
 import { SigninComponent } from './signin/signin.component';
@@ -14,11 +14,11 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: '404', component: PageNotFoundComponent },
-  { path: 'profile', component: ProfileComponent, ...canActivate(() => redirectUnauthorizedTo(['login']))},
+  { path: 'myProfile', component: MyProfileComponent, ...canActivate(() => redirectUnauthorizedTo(['login']))},
   { path: 'signUpLogin', component: SignUpLoginComponent },
   { path: 'joinUs', component: JoinusComponent },
 
-  //using interface seller person create profile component using boostrap 5 using static data
+  //using interface seller person create myProfile component using boostrap 5 using static data
   {
     path: 'login',
     component: SigninComponent,

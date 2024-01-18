@@ -106,8 +106,8 @@ export class ClientSignUpComponent {
             next: () => console.log('Signed up successfully'),
             error: (error) => console.log(error.message),
           });
-          // Navigate to the profile page
-          this.router.navigate(['/profile']);
+          // Navigate to the myProfile page
+          this.router.navigate(['/myProfile']);
         },
         (error) => {
           console.error('Error saving client:', error);
