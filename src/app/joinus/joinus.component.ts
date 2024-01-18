@@ -10,13 +10,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./joinus.component.css'],
 })
 export class JoinusComponent {
-  constructor(private router:Router) {}
+  constructor(private router: Router) {}
   signUp() {
     this.router.navigate(['/signUp']);
   }
 
   login() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
     // TODO: Implement navigateLogin method
     // this.router.navigate(['/login']);
   }

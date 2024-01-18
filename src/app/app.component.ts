@@ -36,8 +36,8 @@ import { AuthService } from './Services/auth.service';
 export class AppComponent {
   pageNotFound: boolean = false;
   pageSignUp: boolean = false;
-  constructor(private router: Router,
-    private auth:AuthService) {}
+  constructor(private router: Router, private auth: AuthService) {}
+  isLoggedIn$ = this.auth.isLoggedIn$;
   ngOnInit() {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
@@ -61,5 +61,8 @@ export class AppComponent {
     this.auth.signOut().subscribe({
       next: () => this.router.navigate(['login']),
     });
+  }
+  goToMyProfile() {
+    this.router.navigate(['/myProfile']);
   }
 }
