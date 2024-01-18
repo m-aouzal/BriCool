@@ -18,12 +18,7 @@ export class AuthService {
 
   constructor(private auth: Auth, private http: HttpClient) { }
 
-  getStreamToken() {
-    return this.http.post<{ token: string }>(`${environment.apiUrl}/createStreamToken`, {
-      user: this.getCurrentUser()
-    }).pipe(pluck('token'))
-  }
-
+  
   getCurrentUser() {
     return this.auth.currentUser!;
   }
@@ -33,23 +28,11 @@ export class AuthService {
   }
 
   signUp({ email, password, displayName }: SignupCredentials) {
-    return from(createUserWithEmailAndPassword(this.auth, email, password)).pipe(
-      switchMap(({ user }) => forkJoin([
-        updateProfile(user, { displayName }),
-        this.http.post(
-          `${environment.apiUrl}/createStreamUser`,
-          { user: {...user, displayName } })
-      ])),
-    );
+    return from(createUserWithEmailAndPassword(this.auth, email, password))
   }
 
   signOut() {
     const user = this.auth.currentUser;
-    return from(this.auth.signOut()).pipe(
-      switchMap(() => this.http.post(
-        `${environment.apiUrl}/revokeStreamUserToken`,
-        { user }
-      ))
-    );
+    return from(this.auth.signOut())
   }
 }

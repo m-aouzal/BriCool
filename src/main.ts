@@ -17,7 +17,6 @@ bootstrapApplication(AppComponent, {
     provideHttpClient(),
     BrowserModule,
     HttpClientModule,
-
     provideAnimations(),
     importProvidersFrom(provideFirebaseApp(() => initializeApp({
       "projectId": "bricool-ginf",

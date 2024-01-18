@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { AuthService } from './Services/auth.service';
+import { UserService } from './Services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -36,9 +37,15 @@ import { AuthService } from './Services/auth.service';
 export class AppComponent {
   pageNotFound: boolean = false;
   pageSignUp: boolean = false;
-  constructor(private router: Router, private auth: AuthService) {}
+  constructor(
+    private router: Router,
+    private auth: AuthService,
+    private userService: UserService
+  ) {}
   isLoggedIn$ = this.auth.isLoggedIn$;
+  isSeller: boolean;
   ngOnInit() {
+    this.isSeller = this.userService.isSeller();
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
