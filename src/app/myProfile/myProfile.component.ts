@@ -3,6 +3,7 @@ import { UserService } from '../Services/user.service';
 import { Seller } from '../Interfaces/seller';
 import { Client } from '../Interfaces/client';
 import { CommonModule, DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-myProfile',
   standalone: true,
@@ -15,7 +16,7 @@ export class MyProfileComponent implements OnInit {
   client: Client;
   user: any;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,private router : Router) {}
 
   ngOnInit() {
     const isSeller = this.userService.isSeller();
@@ -45,6 +46,10 @@ export class MyProfileComponent implements OnInit {
         }
       );
     }
+  }
+
+  editProfile(){
+    this.router.navigate(['editProfile']);
   }
 
   // ... existing code ...
