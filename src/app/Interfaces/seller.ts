@@ -20,10 +20,10 @@ export interface Seller {
   city: string;
   slogan?: string;
   description?: string;
-  rating?: number;
   completedTaskNumber?: number;
+  occupations: string[];
   photoDeProfil?: string;
-  occupations: Occupation[];
-  projects?: Project[];
   yearsOfExperience?: number;
+  rating?: number;
+  projects?: Project[];
 }

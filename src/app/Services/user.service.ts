@@ -83,6 +83,10 @@ export class UserService {
   postSeller(seller: Seller): Observable<Seller> {
     return this.http.post<Seller>(`${this.baseUrl}/sellers`, seller);
   }
+  putSeller(sellerId: string, seller: Seller): Observable<Seller> {
+    const url = `${this.baseUrl}/sellers/${sellerId}`;
+    return this.http.put<Seller>(url, seller);
+  }
 
   constructor(private http: HttpClient) {}
 }

@@ -112,31 +112,33 @@
     </div>
   </div>
 -->
-<div class="container mt-5"  *ngIf="user">
+<div class="container mt-5" *ngIf="user">
   <h2>User Profile</h2>
 
-   Personal Information
+  Personal Information
   <div class="card mb-3">
     <div class="card-header">
       <h3>Personal Information</h3>
     </div>
     <div class="card-body">
       <p><strong>First Name:</strong> {{ user.firstName }}</p>
-      <p><strong>Last Name:</strong> {{ user.lastName}}</p>
+      <p><strong>Last Name:</strong> {{ user.lastName }}</p>
       <p><strong>Email:</strong> {{ user.email }}</p>
       <p><strong>Phone Number:</strong> {{ user.phoneNumber }}</p>
-
     </div>
   </div>
 
- user Information
- <div class="card mb-3">
+  user Information
+  <div class="card mb-3">
     <div class="card-header">
       <h3>user Information</h3>
     </div>
     <div class="card-body">
-      <p><strong>Occupations:</strong> {{ user.occupations}}</p>
-      <p><strong>Date of Birth:</strong> {{ user.yearsOfBirth | date:'yyyy-MM-dd' }}</p>
+      <p><strong>Occupations:</strong> {{ user.occupations }}</p>
+      <p>
+        <strong>Date of Birth:</strong>
+        {{ user.yearsOfBirth | date : "yyyy-MM-dd" }}
+      </p>
       <p><strong>City:</strong> {{ user.city }}</p>
       <p><strong>Gender:</strong> {{ user.gender }}</p>
     </div>

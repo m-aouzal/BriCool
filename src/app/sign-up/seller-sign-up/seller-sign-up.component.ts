@@ -237,11 +237,5 @@ export class SellerSignUpComponent {
     };
   }
 
-  onGenderSelectionChange(gender: string) {
-    this.personForm.patchValue({ gender }); // Update the form value
-    if (gender === 'OTHER') {
-      // Redirect to example.com for "Other" selection
-      window.location.href = 'https://psychcentral.com/';
-    }
-  }
+ 
 }
